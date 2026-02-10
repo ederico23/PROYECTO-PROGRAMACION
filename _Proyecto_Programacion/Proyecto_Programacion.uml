@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_zE_14AGlEfGmsPn5CVrBwQ" name="Proyecto_Programacion">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_zLeRUAGlEfGmsPn5CVrBwQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Gbo6cAGmEfGmsPn5CVrBwQ" name="Personaje">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_KSqZ4AGnEfGmsPn5CVrBwQ" name="vida" visibility="protected">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Rjlp0AGnEfGmsPn5CVrBwQ" name="statAtaque" visibility="protected">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VKrFQAGnEfGmsPn5CVrBwQ" name="statInteligencia" visibility="protected">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VMfqMAGnEfGmsPn5CVrBwQ" name="statFuerza" visibility="protected">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VOGMsAGnEfGmsPn5CVrBwQ" name="statVelocidad" visibility="protected">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VYLVwAGnEfGmsPn5CVrBwQ" name="statResistencia" visibility="protected">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_sWi4gAGzEfGmsPn5CVrBwQ" name="Personaje"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_KclVcAGoEfGmsPn5CVrBwQ" name="Ataque">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_Ou9JkAGoEfGmsPn5CVrBwQ" name="ataqueNormal"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_RfXbsAGoEfGmsPn5CVrBwQ" name="movimientoEspecialDeClase"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_fw1LoAGnEfGmsPn5CVrBwQ" name="PersonajeInteligencia">
+    <generalization xmi:type="uml:Generalization" xmi:id="_mepugAGnEfGmsPn5CVrBwQ" general="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_iIg-QAGzEfGmsPn5CVrBwQ" name="multiplicadorAtaque" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_2L_7sAGoEfGmsPn5CVrBwQ" name="ataqueNormal()" concurrency="concurrent">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_5b_s0AGoEfGmsPn5CVrBwQ" name="personajeObjetivo" type="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_BA9TEAGpEfGmsPn5CVrBwQ" name="movimientoEspecialDeClase()">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_GsiV0AGpEfGmsPn5CVrBwQ" name="personajeObjetivo" type="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_rEj2wAG0EfGmsPn5CVrBwQ" name="PersonajeInteligencia"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_qaQocAGnEfGmsPn5CVrBwQ" name="PersonajeResistencia">
+    <generalization xmi:type="uml:Generalization" xmi:id="_1bT7EAGnEfGmsPn5CVrBwQ" general="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_n5ihsAGzEfGmsPn5CVrBwQ" name="multiplicadorAtaque" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="__nMq0AGoEfGmsPn5CVrBwQ" name="ataqueNormal()" concurrency="concurrent">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="__nMq0QGoEfGmsPn5CVrBwQ" name="personajeObjetivo" type="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_KA5pkAGpEfGmsPn5CVrBwQ" name="movimientoEspecialDeClase()">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_KA5pkQGpEfGmsPn5CVrBwQ" name="personajeObjetivo" type="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_tz_4gAG0EfGmsPn5CVrBwQ" name="PersonajeResistencia"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_s5z0EAGnEfGmsPn5CVrBwQ" name="PersonajeVelocidad">
+    <generalization xmi:type="uml:Generalization" xmi:id="_19h3UAGnEfGmsPn5CVrBwQ" general="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_oAsSkAGzEfGmsPn5CVrBwQ" name="multiplicadorAtaque" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="__34LIAGoEfGmsPn5CVrBwQ" name="ataqueNormal()" concurrency="concurrent">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="__34LIQGoEfGmsPn5CVrBwQ" name="personajeObjetivo" type="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_KHZ6MAGpEfGmsPn5CVrBwQ" name="movimientoEspecialDeClase()">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_KHZ6MQGpEfGmsPn5CVrBwQ" name="personajeObjetivo" type="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_xbqiwAG0EfGmsPn5CVrBwQ" name="PersonajeVelocidad"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_vLrJAAGnEfGmsPn5CVrBwQ" name="PersonajeFuerza">
+    <generalization xmi:type="uml:Generalization" xmi:id="_2hijUAGnEfGmsPn5CVrBwQ" general="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ouUNkAGzEfGmsPn5CVrBwQ" name="multiplicadorAtaque" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="__-lQEAGoEfGmsPn5CVrBwQ" name="ataqueNormal()" concurrency="concurrent">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="__-lQEQGoEfGmsPn5CVrBwQ" name="personajeObjetivo" type="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_KNJ84AGpEfGmsPn5CVrBwQ" name="movimientoEspecialDeClase()">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_KNJ84QGpEfGmsPn5CVrBwQ" name="personajeObjetivo" type="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_zzofsAG0EfGmsPn5CVrBwQ" name="PersonajeFuerza"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iHhEQAGpEfGmsPn5CVrBwQ" name="Objeto">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_uZgaUAGpEfGmsPn5CVrBwQ" name="precio" visibility="protected">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_kE-PcAGpEfGmsPn5CVrBwQ" name="PocionVida">
+    <generalization xmi:type="uml:Generalization" xmi:id="_x_XtwAGpEfGmsPn5CVrBwQ" general="_iHhEQAGpEfGmsPn5CVrBwQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_0gzvwAGpEfGmsPn5CVrBwQ" name="cantidadVidaAnyadida" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_Cbcg0AG5EfGmsPn5CVrBwQ" name="usarPocionVida"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_lzJBcAGpEfGmsPn5CVrBwQ" name="PocionDaño">
+    <generalization xmi:type="uml:Generalization" xmi:id="_ylDNsAGpEfGmsPn5CVrBwQ" general="_iHhEQAGpEfGmsPn5CVrBwQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_9GIm0AGpEfGmsPn5CVrBwQ" name="cantidadStatDañoAnyadida" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_HCVKMAGqEfGmsPn5CVrBwQ" name="duracion" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_EZjzUAG5EfGmsPn5CVrBwQ" name="usarPocionDaño"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_nLMZgAGpEfGmsPn5CVrBwQ" name="PocionDefensa">
+    <generalization xmi:type="uml:Generalization" xmi:id="_zJcUMAGpEfGmsPn5CVrBwQ" general="_iHhEQAGpEfGmsPn5CVrBwQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_9caY0AGpEfGmsPn5CVrBwQ" name="porcentajeReduccionDaño" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Jjs6wAGqEfGmsPn5CVrBwQ" name="duracion" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_FpGIkAG5EfGmsPn5CVrBwQ" name="usarPocionDefensa"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Lc0_kAGqEfGmsPn5CVrBwQ" name="Jugador">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_OnPGEAGqEfGmsPn5CVrBwQ" name="nombre" visibility="private" aggregation="shared">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_RjyWwAGqEfGmsPn5CVrBwQ" name="contadorBatallasGanadas" visibility="private" aggregation="shared">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_USPhEAGqEfGmsPn5CVrBwQ" name="contadorBatallasPerdidas" visibility="private" aggregation="shared">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_WzcSgAGqEfGmsPn5CVrBwQ" name="personajeElegido" visibility="private" type="_Gbo6cAGmEfGmsPn5CVrBwQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Zw9zkAGqEfGmsPn5CVrBwQ" name="monedas" visibility="private">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_c7OJEAGqEfGmsPn5CVrBwQ" name="objetos" visibility="private" type="_iHhEQAGpEfGmsPn5CVrBwQ" isOrdered="true" isUnique="false">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WtBE8AGrEfGmsPn5CVrBwQ" name="LiteralInteger1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WtBsAAGrEfGmsPn5CVrBwQ" name="LiteralUnlimitedNatural1" value="*"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="__LrygAGzEfGmsPn5CVrBwQ" name="Comprar">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Bj9RcAG0EfGmsPn5CVrBwQ" name="objeto" type="_iHhEQAGpEfGmsPn5CVrBwQ" direction="return"/>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_GxH54AG0EfGmsPn5CVrBwQ" name="usarObjeto">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_RxkIgAG0EfGmsPn5CVrBwQ" name="objetoAUsar" type="_iHhEQAGpEfGmsPn5CVrBwQ"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cZNqYAG5EfGmsPn5CVrBwQ" name="Menu">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_l5kmUAG5EfGmsPn5CVrBwQ" name="FasePreparacion"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_oDcc4AG5EfGmsPn5CVrBwQ" name="FaseBatalla"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_qO95QAG5EfGmsPn5CVrBwQ" name="ResumenBatalla"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_4iGAoAG5EfGmsPn5CVrBwQ" client="_KclVcAGoEfGmsPn5CVrBwQ" supplier="_fw1LoAGnEfGmsPn5CVrBwQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_5MclMAG5EfGmsPn5CVrBwQ" client="_KclVcAGoEfGmsPn5CVrBwQ" supplier="_qaQocAGnEfGmsPn5CVrBwQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_5xDHEAG5EfGmsPn5CVrBwQ" client="_KclVcAGoEfGmsPn5CVrBwQ" supplier="_s5z0EAGnEfGmsPn5CVrBwQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_7eaAwAG5EfGmsPn5CVrBwQ" client="_KclVcAGoEfGmsPn5CVrBwQ" supplier="_vLrJAAGnEfGmsPn5CVrBwQ"/>
+</uml:Model>
