@@ -21,6 +21,10 @@ public class Personaje {
 	 */
 	protected Double statAtaque;
 	/**
+	 * Estadistica de defensa del personaje
+	 */
+	protected Double statDefensa;
+	/**
 	 * Estadistica de inteligencia del personaje
 	 */
 	protected Double statInteligencia;
@@ -45,10 +49,11 @@ public class Personaje {
 	 * @param statVelocidad
 	 * @param statResistencia
 	 */
-	public Personaje(Double vida, Double statAtaque, Double statInteligencia, Double statFuerza, 
+	public Personaje(Double vida, Double statAtaque, Double statDefensa, Double statInteligencia, Double statFuerza, 
 			Double statVelocidad, Double statResistencia) {
 		this.vida = vida;
 		this.statAtaque = statAtaque;
+		this.statDefensa = statDefensa;
 		this.statInteligencia = statInteligencia;
 		this.statFuerza = statFuerza;
 		this.statVelocidad = statVelocidad;
@@ -78,6 +83,18 @@ public class Personaje {
 	 */
 	public void setStatAtaque(Double statAtaque) {
 		this.statAtaque = statAtaque;
+	}
+	/**
+	 * @return the statDefensa
+	 */
+	public Double getStatDefensa() {
+		return statDefensa;
+	}
+	/**
+	 * @param statDefensa the statDefensa to set
+	 */
+	public void setStatDefensa(Double statDefensa) {
+		this.statDefensa = statDefensa;
 	}
 	/**
 	 * @return the statInteligencia
