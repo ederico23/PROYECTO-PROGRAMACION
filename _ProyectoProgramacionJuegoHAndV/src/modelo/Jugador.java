@@ -99,6 +99,7 @@ public class Jugador {
 				+ "Personaje = "+personajeElegido+"/n"
 				+ "Monedas = "+monedas;
 	}
+	// Prueba git
 	
 	
 	
