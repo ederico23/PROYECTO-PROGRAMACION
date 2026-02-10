@@ -12,7 +12,7 @@ public class Jugador {
 	private static Integer contadorBatallasPerdidas;
 	private Personaje personajeElegido;
 	private Integer monedas;
-	private ArrayList<Objeto> inventarioObjetos;
+	private ArrayList<Pociones> inventarioObjetos;
 	/**
 	 * @param nombre
 	 * @param personajeElegido
@@ -24,7 +24,7 @@ public class Jugador {
 		this.nombre = nombre;
 		this.personajeElegido = personajeElegido;
 		this.monedas = monedas;
-		this.inventarioObjetos = new ArrayList<Objeto>();
+		this.inventarioObjetos = new ArrayList<Pociones>();
 	}
 	/**
 	 * @return the nombre
@@ -89,7 +89,7 @@ public class Jugador {
 	/**
 	 * @return the inventarioObjetos
 	 */
-	public ArrayList<Objeto> getInventarioObjetos() {
+	public ArrayList<Pociones> getInventarioObjetos() {
 		return inventarioObjetos;
 	}
 	@Override
