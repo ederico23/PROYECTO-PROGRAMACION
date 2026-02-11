@@ -44,7 +44,7 @@ public class PersonajeFuerza extends Personaje implements Ataque{
 	}
 	@Override
 	public double ataqueMagico(Personaje personajeObjetivo) {
-		double dañoBase = (statAtaque + statFuerza) - personajeObjetivo.getStatDefensa();
+		double dañoBase = (statAtaque + statInteligencia) - personajeObjetivo.getStatResistencia();
 		// Para que el daño no pueda ser negativo y sea minimo 1
 		double daño = Math.max(1, dañoBase) * SistemaAfinidad.calcular(this, personajeObjetivo);
 		return daño;
