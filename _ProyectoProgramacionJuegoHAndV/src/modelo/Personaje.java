@@ -9,37 +9,41 @@ import java.util.Objects;
  */
 public class Personaje {
 	/**
+	 * Contador para el identificador
+	 */
+	private static int contadorId = 0;
+	/**
 	 * Identificador de personaje
 	 */
-	private static int idPersonaje;
+	private int idPersonaje;
 	/**
 	 * vida del personaje
 	 */
-	protected Double vida;
+	protected double vida;
 	/**
 	 * Estadistica de ataque del personaje
 	 */
-	protected Double statAtaque;
+	protected double statAtaque;
 	/**
 	 * Estadistica de defensa del personaje
 	 */
-	protected Double statDefensa;
+	protected double statDefensa;
 	/**
 	 * Estadistica de inteligencia del personaje
 	 */
-	protected Double statInteligencia;
+	protected double statInteligencia;
 	/**
 	 * Estadistica de fuerza del personaje
 	 */
-	protected Double statFuerza;
+	protected double statFuerza;
 	/**
 	 * Estadistica de velocidad del personaje
 	 */
-	protected Double statVelocidad;
+	protected double statVelocidad;
 	/**
 	 * Estadistica de resistencia del personaje
 	 */
-	protected Double statResistencia;
+	protected double statResistencia;
 	/**
 	 * Constructor de clase
 	 * @param vida
@@ -49,8 +53,8 @@ public class Personaje {
 	 * @param statVelocidad
 	 * @param statResistencia
 	 */
-	public Personaje(Double vida, Double statAtaque, Double statDefensa, Double statInteligencia, Double statFuerza, 
-			Double statVelocidad, Double statResistencia) {
+	public Personaje(double vida, double statAtaque, double statDefensa, double statInteligencia, double statFuerza, 
+			double statVelocidad, double statResistencia) {
 		this.vida = vida;
 		this.statAtaque = statAtaque;
 		this.statDefensa = statDefensa;
@@ -58,92 +62,114 @@ public class Personaje {
 		this.statFuerza = statFuerza;
 		this.statVelocidad = statVelocidad;
 		this.statResistencia = statResistencia;
-		idPersonaje++;
+		idPersonaje = contadorId++;
 	}
+	
 	/**
 	 * @return the vida
 	 */
-	public Double getVida() {
+	public double getVida() {
 		return vida;
 	}
+
 	/**
 	 * @param vida the vida to set
 	 */
-	public void setVida(Double vida) {
+	public void setVida(double vida) {
 		this.vida = vida;
 	}
+
 	/**
 	 * @return the statAtaque
 	 */
-	public Double getStatAtaque() {
+	public double getStatAtaque() {
 		return statAtaque;
 	}
+
 	/**
 	 * @param statAtaque the statAtaque to set
 	 */
-	public void setStatAtaque(Double statAtaque) {
+	public void setStatAtaque(double statAtaque) {
 		this.statAtaque = statAtaque;
 	}
+
 	/**
 	 * @return the statDefensa
 	 */
-	public Double getStatDefensa() {
+	public double getStatDefensa() {
 		return statDefensa;
 	}
+
 	/**
 	 * @param statDefensa the statDefensa to set
 	 */
-	public void setStatDefensa(Double statDefensa) {
+	public void setStatDefensa(double statDefensa) {
 		this.statDefensa = statDefensa;
 	}
+
 	/**
 	 * @return the statInteligencia
 	 */
-	public Double getStatInteligencia() {
+	public double getStatInteligencia() {
 		return statInteligencia;
 	}
+
 	/**
 	 * @param statInteligencia the statInteligencia to set
 	 */
-	public void setStatInteligencia(Double statInteligencia) {
+	public void setStatInteligencia(double statInteligencia) {
 		this.statInteligencia = statInteligencia;
 	}
+
 	/**
 	 * @return the statFuerza
 	 */
-	public Double getStatFuerza() {
+	public double getStatFuerza() {
 		return statFuerza;
 	}
+
 	/**
 	 * @param statFuerza the statFuerza to set
 	 */
-	public void setStatFuerza(Double statFuerza) {
+	public void setStatFuerza(double statFuerza) {
 		this.statFuerza = statFuerza;
 	}
+
 	/**
 	 * @return the statVelocidad
 	 */
-	public Double getStatVelocidad() {
+	public double getStatVelocidad() {
 		return statVelocidad;
 	}
+
 	/**
 	 * @param statVelocidad the statVelocidad to set
 	 */
-	public void setStatVelocidad(Double statVelocidad) {
+	public void setStatVelocidad(double statVelocidad) {
 		this.statVelocidad = statVelocidad;
 	}
+
 	/**
 	 * @return the statResistencia
 	 */
-	public Double getStatResistencia() {
+	public double getStatResistencia() {
 		return statResistencia;
 	}
+
 	/**
 	 * @param statResistencia the statResistencia to set
 	 */
-	public void setStatResistencia(Double statResistencia) {
+	public void setStatResistencia(double statResistencia) {
 		this.statResistencia = statResistencia;
 	}
+
+	/**
+	 * @return the idPersonaje
+	 */
+	public int getIdPersonaje() {
+		return idPersonaje;
+	}
+
 	@Override
 	/**
 	 * Metodo para observar caracteristicas de personaje
@@ -165,7 +191,7 @@ public class Personaje {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!(obj instanceof Personaje))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;

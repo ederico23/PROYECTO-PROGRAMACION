@@ -8,22 +8,29 @@ public class PersonajeInteligencia extends Personaje implements Ataque{
 
 	private Double multiplicadorAtaque;
 	
-	public PersonajeInteligencia(Double vida, Double statAtaque, Double statDefensa, Double statInteligencia, Double statFuerza,
-			Double statVelocidad, Double statResistencia) {
-		super(
-			vida = 100.0, 
-			statAtaque = 1.0, 
-			statDefensa = 10.0,
-			statInteligencia = 1.0, 
-			statFuerza = 1.0, 
-			statVelocidad = 1.0, 
-			statResistencia = 1.0);
+	public PersonajeInteligencia() {
+		super(100.0, // vida
+			10.0,    // ataque
+			10.0,    // defensa
+			2.0,     // inteligencia     
+			9.0,     // fuerza
+			3.0,     // velocidad  
+			5.0);	 // resistencia
+	}
+	public PersonajeInteligencia(double vida, double statAtaque, double statDefensa, double statInteligencia,
+			double statFuerza, double statVelocidad, double statResistencia) {
+		super(vida, statAtaque, statDefensa, statInteligencia, statFuerza, statVelocidad, statResistencia);
 	}
 
 	@Override
-	public void ataqueFisico(Personaje personajeObjetivo) {
+	public double ataqueFisico(Personaje personajeObjetivo) {
 		// TODO Auto-generated method stub
-		
+		return 0.0;
+	}
+	@Override
+	public double ataqueMagico(Personaje personajeObjetivo) {
+		// TODO Auto-generated method stub
+		return 0.0;
 	}
 
 	@Override
@@ -31,10 +38,6 @@ public class PersonajeInteligencia extends Personaje implements Ataque{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void ataqueMagico(Personaje personajeObjetivo) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
 }
