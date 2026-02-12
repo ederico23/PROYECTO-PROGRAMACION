@@ -94,9 +94,9 @@ public class Jugador {
 	}
 	@Override
 	public String toString() {
-		return "Jugador: /n"
-				+ "Nombre = "+nombre+"/n"
-				+ "Personaje = "+personajeElegido+"/n"
+		return "Jugador: \n"
+				+ "Nombre = "+nombre+"\n"
+				+ personajeElegido+"\n"
 				+ "Monedas = "+monedas;
 	}
 	// Prueba git

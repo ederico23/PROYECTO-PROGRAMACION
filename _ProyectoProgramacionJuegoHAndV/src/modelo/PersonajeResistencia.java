@@ -4,9 +4,7 @@ package modelo;
  * @author Mariano, Eder
  * @version 1.0 - 02/09/2026
  */
-public class PersonajeResistencia extends Personaje implements Ataque{
-
-	private double multiplicadorAtaque;
+public class PersonajeResistencia extends Personaje {
 	
 	public PersonajeResistencia() {
 		super(100.0, // vida

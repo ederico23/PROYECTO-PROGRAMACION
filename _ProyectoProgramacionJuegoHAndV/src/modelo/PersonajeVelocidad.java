@@ -4,7 +4,7 @@ package modelo;
  * @author Mariano, Eder
  * @version 1.0 - 02/09/2026
  */
-public class PersonajeVelocidad extends Personaje implements Ataque{
+public class PersonajeVelocidad extends Personaje {
 
 	private Double multiplicadorAtaque;
 	

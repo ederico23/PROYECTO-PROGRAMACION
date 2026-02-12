@@ -4,7 +4,7 @@ package modelo;
  * @author Mariano, Eder
  * @version 1.0 - 02/09/2026
  */
-public class PersonajeFuerza extends Personaje implements Ataque{
+public class PersonajeFuerza extends Personaje {
 	/**
 	 *  Constructor base
 	 */

@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Mariano, Eder
  * @version 1.0 - 02/09/2026
  */
-public class Personaje {
+public abstract class Personaje implements Ataque{
 	/**
 	 * Contador para el identificador
 	 */
@@ -175,12 +175,13 @@ public class Personaje {
 	 * Metodo para observar caracteristicas de personaje
 	 */
 	public String toString() {
-		return "Estadisticas de Personaje: /n"
-				+ "Vida = " +vida+"/n"
-				+ "Ataque = " +statAtaque+"/n"
-				+ "Inteligencia = " +statInteligencia+"/n"
-				+ "Fuerza = " +statFuerza+ "/n "
-				+ "Velocidad = " +statVelocidad+ "/n "
+		return "Estadisticas de Personaje: \n"
+				+ "Vida = " +vida+"\n"
+				+ "Ataque = " +statAtaque+"\n"
+				+ "Defensa = " +statDefensa+"\n"
+				+ "Inteligencia = " +statInteligencia+"\n"
+				+ "Fuerza = " +statFuerza+ "\n"
+				+ "Velocidad = " +statVelocidad+ "\n"
 				+ "Resistencia = "+ statResistencia;
 	}
 	@Override
@@ -198,7 +199,11 @@ public class Personaje {
 		Personaje other = (Personaje) obj;
 		return Objects.equals(idPersonaje, other.idPersonaje);
 	}
-	
+	// Declaramos metodos de interfaz como abstractos
+	public abstract double ataqueFisico(Personaje personajeObjetivo);
+	public abstract double ataqueMagico(Personaje personajeObjetivo);
+	public abstract void movimientoEspecialDeClase(Personaje personajeObjetivo);
+
 	
 	
 	
