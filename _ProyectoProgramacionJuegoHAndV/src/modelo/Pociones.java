@@ -4,7 +4,7 @@ package modelo;
  * clase base para todas las pociones del juego
  * representa un objeto que puede ser usado por el jugador durante la batalla
  * @author Mariano, Eder
- * @version 1.0 - 02/09/2026
+ * @version 1.0 - 11/02/26
  */
 public class Pociones {
 	
@@ -15,7 +15,7 @@ public class Pociones {
 	
 	/**
 	 * constructor de la clase Pociones
-	 * @param precio el precio de la poción en monedas
+	 * @param precio = el precio de la poción en monedas
 	 */
 	public Pociones(Integer precio) {
 		this.precio = precio;
@@ -51,6 +51,6 @@ public class Pociones {
 	 * @return string con el precio de la poción
 	 */
 	public String toString() {
-		return "poción - precio: " + precio + " monedas";
+		return "precio: " + precio + " monedas";
 	}
 }

@@ -5,7 +5,7 @@ package modelo;
  * esta poción restaura puntos de vida del personaje
  * hereda de la clase Pociones
  * @author Mariano, Eder
- * @version 1.0 - 02/09/2026
+ * @version 1.0 - 11/02/26
  */
 public class PocionVida extends Pociones {
 	
@@ -71,7 +71,7 @@ public class PocionVida extends Pociones {
 	
 	@Override
 	/**
-	 * Devuelve una representación en texto de la poción de vida
+	 * devuelve una representación en texto de la poción de vida
 	 * @return String con los datos de la poción
 	 */
 	public String toString() {
@@ -79,4 +79,4 @@ public class PocionVida extends Pociones {
 			   "  Precio: " + precio + " monedas\n" +
 			   "  Vida restaurada: +" + cantidadVidaAñadida + " HP";
 	}
-}
+}	
