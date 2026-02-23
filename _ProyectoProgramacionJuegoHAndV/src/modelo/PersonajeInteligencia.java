@@ -5,30 +5,58 @@ package modelo;
  * @version 1.0 - 02/09/2026
  */
 public class PersonajeInteligencia extends Personaje {
-	
+	/**
+	 *  Constructor con estadisticas predeterminadas
+	 */
 	public PersonajeInteligencia() {
-		super(100.0, // vida
-			10.0,    // ataque
-			10.0,    // defensa
-			2.0,     // inteligencia     
-			9.0,     // fuerza
-			3.0,     // velocidad  
-			5.0);	 // resistencia
+		super(85.0, // vida
+			7.0,    // ataque
+			6.0,    // defensa
+			14.0,     // inteligencia     
+			5.0,     // fuerza
+			8.0,     // velocidad  
+			10.0);	 // resistencia
 	}
+	/**
+	 * Constructor para personalizar
+	 * @param vida
+	 * @param statAtaque
+	 * @param statDefensa
+	 * @param statInteligencia
+	 * @param statFuerza
+	 * @param statVelocidad
+	 * @param statResistencia
+	 */
 	public PersonajeInteligencia(double vida, double statAtaque, double statDefensa, double statInteligencia,
 			double statFuerza, double statVelocidad, double statResistencia) {
 		super(vida, statAtaque, statDefensa, statInteligencia, statFuerza, statVelocidad, statResistencia);
 	}
-
+	/**
+	 *  Metodo de ataque de tipo fisico
+	 *  @param personajeObjetivo se le pasa como parametro el personaje al que se va a atacar
+	 *  para tomar su stat de defensa y calcular el daño 
+	 *  @return double cantidad de daño a hacer
+	 */
 	@Override
 	public double ataqueFisico(Personaje personajeObjetivo) {
-		// TODO Auto-generated method stub
-		return 0.0;
+		double danyoBase = (statAtaque + statFuerza) - personajeObjetivo.getStatDefensa();
+		// Para que el daño no pueda ser negativo y sea minimo 1
+		double danyo = Math.max(1, danyoBase) * SistemaAfinidad.calcular(this, personajeObjetivo);
+
+		return danyo;
 	}
+	/**
+	 *  Metodo de ataque de tipo magico
+	 *  @param personajeObjetivo se le pasa como parametro el personaje al que se va a atacar
+	 *  para tomar su stat de defensa y calcular el daño 
+	 *  @return double cantidad de daño a hacer
+	 */
 	@Override
 	public double ataqueMagico(Personaje personajeObjetivo) {
-		// TODO Auto-generated method stub
-		return 0.0;
+		double danyoBase = (statAtaque + statInteligencia) - personajeObjetivo.getStatResistencia();
+		// Para que el daño no pueda ser negativo y sea minimo 1
+		double danyo = Math.max(1, danyoBase) * SistemaAfinidad.calcular(this, personajeObjetivo);
+		return danyo;
 	}
 
 	@Override

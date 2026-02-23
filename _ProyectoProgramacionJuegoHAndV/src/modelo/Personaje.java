@@ -199,6 +199,25 @@ public abstract class Personaje implements Ataque{
 		Personaje other = (Personaje) obj;
 		return Objects.equals(idPersonaje, other.idPersonaje);
 	}
+	/**
+	 * Metodo para reducir la vida de personaje cuando recibe danyo
+	 * @param danyo recibido
+	 */
+	public void recibirDanyo(double danyo) {
+		// Reducir vida
+		this.vida -= danyo;
+		// Condicion para que vida no sea menor que 0
+		if (this.vida < 0) {
+			this.vida = 0;
+		}
+	}
+	/**
+	 * Metodo para determinar si un personaje esta vivo o no
+	 * @return booleano con true si esta vivo y false si no lo esta
+	 */
+	public boolean estaVivo() {
+		return this.vida > 0;
+	}
 	// Declaramos metodos de interfaz como abstractos
 	public abstract double ataqueFisico(Personaje personajeObjetivo);
 	public abstract double ataqueMagico(Personaje personajeObjetivo);

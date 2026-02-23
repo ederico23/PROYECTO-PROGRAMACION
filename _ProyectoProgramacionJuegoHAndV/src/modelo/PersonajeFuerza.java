@@ -6,16 +6,16 @@ package modelo;
  */
 public class PersonajeFuerza extends Personaje {
 	/**
-	 *  Constructor base
+	 *  Constructor con estadisticas predeterminadas
 	 */
 	public PersonajeFuerza() {
-		super(100.0, // vida
-			10.0,    // ataque
-			10.0,    // defensa
-			2.0,     // inteligencia     
-			9.0,     // fuerza
-			3.0,     // velocidad  
-			5.0);	 // resistencia
+		super(110.0, // vida
+			12.0,    // ataque
+			9.0,    // defensa
+			4.0,     // inteligencia     
+			13.0,     // fuerza
+			5.0,     // velocidad  
+			7.0);	 // resistencia
 	}
 	/**
 	 * Constructor para personalizar
@@ -32,22 +32,31 @@ public class PersonajeFuerza extends Personaje {
 		super(vida, statAtaque, statDefensa, statInteligencia, statFuerza, statVelocidad, statResistencia);
 	}
 	/**
-	 * 
+	 *  Metodo de ataque de tipo fisico
+	 *  @param personajeObjetivo se le pasa como parametro el personaje al que se va a atacar
+	 *  para tomar su stat de defensa y calcular el daño 
+	 *  @return double cantidad de daño a hacer
 	 */
 	@Override
 	public double ataqueFisico(Personaje personajeObjetivo) {
-		double dañoBase = (statAtaque + statFuerza) - personajeObjetivo.getStatDefensa();
+		double danyoBase = (statAtaque + statFuerza) - personajeObjetivo.getStatDefensa();
 		// Para que el daño no pueda ser negativo y sea minimo 1
-		double daño = Math.max(1, dañoBase) * SistemaAfinidad.calcular(this, personajeObjetivo);
+		double danyo = Math.max(1, danyoBase) * SistemaAfinidad.calcular(this, personajeObjetivo);
 
-		return daño;
+		return danyo;
 	}
+	/**
+	 *  Metodo de ataque de tipo magico
+	 *  @param personajeObjetivo se le pasa como parametro el personaje al que se va a atacar
+	 *  para tomar su stat de defensa y calcular el daño 
+	 *  @return double cantidad de daño a hacer
+	 */
 	@Override
 	public double ataqueMagico(Personaje personajeObjetivo) {
-		double dañoBase = (statAtaque + statInteligencia) - personajeObjetivo.getStatResistencia();
+		double danyoBase = (statAtaque + statInteligencia) - personajeObjetivo.getStatResistencia();
 		// Para que el daño no pueda ser negativo y sea minimo 1
-		double daño = Math.max(1, dañoBase) * SistemaAfinidad.calcular(this, personajeObjetivo);
-		return daño;
+		double danyo = Math.max(1, danyoBase) * SistemaAfinidad.calcular(this, personajeObjetivo);
+		return danyo;
 	}
 	@Override
 	public void movimientoEspecialDeClase(Personaje personajeObjetivo) {

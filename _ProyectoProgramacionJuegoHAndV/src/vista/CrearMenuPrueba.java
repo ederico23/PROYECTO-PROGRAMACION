@@ -1,8 +1,13 @@
 package vista;
 
 import utilidades.Leer;
-
+/**
+ * Clase para hacer vista de menu de prueba
+ */
 public class CrearMenuPrueba {
+	/*
+	 * Ejemplo de uso del metodo en el main
+	 */
 	public static void main(String[] args) {
 		int opcion;
 		String[] menu= {"Salir","Introducir mensaje","Mostrar mensaje",
@@ -27,7 +32,11 @@ public class CrearMenuPrueba {
 		System.out.println("FIN PROGRAMA");
 		
 	}//fin-main
-	
+	/**
+	 * Metodo para mostrar un menu
+	 * @param menu
+	 * @return
+	 */
 	public static int mostrarMenu(String[] menu) {
 		int opcion;
 		do {

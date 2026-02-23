@@ -8,8 +8,8 @@ import java.util.ArrayList;
  */
 public class Jugador {
 	private String nombre;
-	private static Integer contadorBatallasGanadas;
-	private static Integer contadorBatallasPerdidas;
+	private int contadorBatallasGanadas;
+	private int contadorBatallasPerdidas;
 	private Personaje personajeElegido;
 	private Integer monedas;
 	private ArrayList<Pociones> inventarioObjetos;
@@ -41,26 +41,26 @@ public class Jugador {
 	/**
 	 * @return the contadorBatallasGanadas
 	 */
-	public static Integer getContadorBatallasGanadas() {
+	public int getContadorBatallasGanadas() {
 		return contadorBatallasGanadas;
 	}
 	/**
 	 * @param contadorBatallasGanadas the contadorBatallasGanadas to set
 	 */
-	public static void setContadorBatallasGanadas(Integer contadorBatallasGanadas) {
-		Jugador.contadorBatallasGanadas = contadorBatallasGanadas;
+	public void setContadorBatallasGanadas(int contadorBatallasGanadas) {
+		this.contadorBatallasGanadas = contadorBatallasGanadas;
 	}
 	/**
 	 * @return the contadorBatallasPerdidas
 	 */
-	public static Integer getContadorBatallasPerdidas() {
+	public int getContadorBatallasPerdidas() {
 		return contadorBatallasPerdidas;
 	}
 	/**
 	 * @param contadorBatallasPerdidas the contadorBatallasPerdidas to set
 	 */
-	public static void setContadorBatallasPerdidas(Integer contadorBatallasPerdidas) {
-		Jugador.contadorBatallasPerdidas = contadorBatallasPerdidas;
+	public void setContadorBatallasPerdidas(int contadorBatallasPerdidas) {
+		this.contadorBatallasPerdidas = contadorBatallasPerdidas;
 	}
 	/**
 	 * @return the personajeElegido
