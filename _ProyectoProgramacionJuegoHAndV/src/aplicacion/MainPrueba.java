@@ -19,10 +19,14 @@ public class MainPrueba {
 		/*System.out.println(jugador1+"\n"
 				+"=====================\n"
 				+jugador2);*/
-
+		// Crear vista
+		CrearMenuPrueba vista = new CrearMenuPrueba();
 		// Creamos el controller
-		CombateController juegoControlador = new CombateController(jugador1, jugador2);
+		CombateController juegoControlador = new CombateController(jugador1, jugador2,
+				vista);
 		
+		// Iniciamos juego
+		juegoControlador.iniciarCombate();
 		
 		
 		

@@ -1,5 +1,6 @@
 package vista;
 
+import modelo.Jugador;
 import utilidades.Leer;
 /**
  * Clase para hacer vista de menu de prueba
@@ -9,27 +10,27 @@ public class CrearMenuPrueba {
 	 * Ejemplo de uso del metodo en el main
 	 */
 	public static void main(String[] args) {
-		int opcion;
-		String[] menu= {"Salir","Introducir mensaje","Mostrar mensaje",
-				"Mostrar palabras del mensaje","Contar palabras clave",
-				"Ejecutar proceso completo"};
-		do {
-			opcion=mostrarMenu(menu);
-			switch(opcion) {
-			case 1: //Introducir mensaje
-				break;
-			case 2: //Mostrar mensaje
-				break;
-			case 3: //Mostrar palabras del mensaje
-				break;
-			case 4: //Contar palabras clave
-				break;
-			case 5: //Ejecutar proceso completo
-				
-			}//fin-switch
-			
-		}while (opcion!=0);
-		System.out.println("FIN PROGRAMA");
+//		int opcion;
+//		String[] menu= {"Salir","Introducir mensaje","Mostrar mensaje",
+//				"Mostrar palabras del mensaje","Contar palabras clave",
+//				"Ejecutar proceso completo"};
+//		do {
+//			opcion=mostrarMenu(menu);
+//			switch(opcion) {
+//			case 1: //Introducir mensaje
+//				break;
+//			case 2: //Mostrar mensaje
+//				break;
+//			case 3: //Mostrar palabras del mensaje
+//				break;
+//			case 4: //Contar palabras clave
+//				break;
+//			case 5: //Ejecutar proceso completo
+//				
+//			}//fin-switch
+//			
+//		}while (opcion!=0);
+//		System.out.println("FIN PROGRAMA");
 		
 	}//fin-main
 	/**
@@ -37,10 +38,10 @@ public class CrearMenuPrueba {
 	 * @param menu
 	 * @return
 	 */
-	public static int mostrarMenu(String[] menu) {
+	public int mostrarMenu(String[] menu, String jugadorAJugar) {
 		int opcion;
 		do {
-			System.out.println("MENÚ");
+			System.out.println("MENÚ / Turno de "+jugadorAJugar);
 			for(int i=1;i<menu.length;i++){
 				System.out.println(i+". "+menu[i]);
 			}
