@@ -65,7 +65,7 @@ public class Tienda {
 		
 		//comprobamos que el indice exista (negativo o mayor al numero de objetos)
 		if (indiceReal < 0 || indiceReal >= catalogo.size()) {
-			System.out.println("opcion no valida");
+			System.out.println("opcion no valida"); // METER EXCEPCION
 			//devolvemos false porque no se puede comprar
 			return false;
 		}
@@ -76,7 +76,7 @@ public class Tienda {
 		//comprobar que el usuario tiene monedas suficientes
 		if (jugador.getMonedas()< objetoAcomprar.getPrecio()) {
 			System.out.println("no tienes suficientes monedas, tienes " + jugador.getMonedas() +
-					" monedas, y necesitas " + objetoAcomprar.getPrecio());
+					" monedas, y necesitas " + objetoAcomprar.getPrecio()); // METER EXCEPCION
 			//false porque no tiene monedas suficiente y no se puede comprar
 			return false;
 		}
@@ -101,9 +101,4 @@ public class Tienda {
 	public ArrayList<Pociones> getCatalogo() {
 		return catalogo;
 	} 
-	
-	
-	
-	
-	
 }//fin Tienda

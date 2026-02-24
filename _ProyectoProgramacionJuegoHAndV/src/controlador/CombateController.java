@@ -37,8 +37,8 @@ public class CombateController {
 			jugadorAtacante = jugador1;
 			jugadorDefensor = jugador2;
 		} else {
-			jugadorAtacante = jugador1;
-			jugadorDefensor = jugador2;
+			jugadorAtacante = jugador2;
+			jugadorDefensor = jugador1;
 		}
 		// Variable para eleccion
 		int opcion;
@@ -102,7 +102,9 @@ public class CombateController {
 			}
 			
 		} while ((p1.estaVivo() && p2.estaVivo()) && opcion != 0);
-		
+		if (opcion == 0) {
+			System.out.println("Has salido de la partida");
+		}
 		if (!p2.estaVivo()) {
 			System.out.println(jugador1.getNombre()+" gana");
 		} else {

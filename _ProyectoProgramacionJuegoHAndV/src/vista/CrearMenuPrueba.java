@@ -50,6 +50,18 @@ public class CrearMenuPrueba {
 		}while(opcion<0||opcion>=menu.length);
 		return opcion;
 	}//fin-mostrarMenu
+	public static int mostrarMenuMetodoEstatico(String[] menu, String jugadorAJugar) {
+		int opcion;
+		do {
+			System.out.println("MENÚ / Turno de "+jugadorAJugar);
+			for(int i=1;i<menu.length;i++){
+				System.out.println(i+". "+menu[i]);
+			}
+			System.out.println(0+". "+menu[0]);
+			opcion=Leer.leerEntero("");
+		}while(opcion<0||opcion>=menu.length);
+		return opcion;
+	}//fin-mostrarMenu
 	
 }//fin-class
 

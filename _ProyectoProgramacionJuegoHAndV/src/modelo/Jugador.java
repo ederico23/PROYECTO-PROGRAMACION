@@ -97,7 +97,7 @@ public class Jugador {
 		return "Jugador: \n"
 				+ "Nombre = "+nombre+"\n"
 				+ personajeElegido+"\n"
-				+ "Monedas = "+monedas
+				+ "Monedas = "+monedas+"\n"
 				+ "Inventario = " + inventarioObjetos.size();
 	}
 	/**
