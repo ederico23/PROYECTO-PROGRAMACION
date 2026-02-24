@@ -108,11 +108,4 @@ public class PocionDaño extends Pociones {
 					+ "daño añadido: +" + cantidadStatDañoAñadida 
 					+ "\n duracion: " + duracion + " turnos";
 	}
-	
-	
-	
-	
-	
-	
-
 }

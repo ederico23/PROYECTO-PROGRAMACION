@@ -97,9 +97,80 @@ public class Jugador {
 		return "Jugador: \n"
 				+ "Nombre = "+nombre+"\n"
 				+ personajeElegido+"\n"
-				+ "Monedas = "+monedas;
+				+ "Monedas = "+monedas
+				+ "Inventario = " + inventarioObjetos.size();
 	}
-	// Prueba git
+	/**
+	 * muestra los objetos que tiene el jugador
+	 * 
+	 */
+	public void mostrarInventario() {
+		System.out.println("---- INVENTARIO DE " + nombre + " ----");
+	
+		//comprobar si el inventario está vacio
+		if (inventarioObjetos.isEmpty()) {
+			System.out.println("no tienes pociones en el inventario");
+		} else {
+			//si hay pociones se muestran
+			for (int i = 0; i < inventarioObjetos.size(); i++) {
+				//lo mismo que en la tienda, (i+1) para que empiece en 1
+				System.out.println((i + 1) + ". " + inventarioObjetos.get(i));
+			}
+		}
+	}
+	/**
+	 * usar la pocion del inventario en el jugador, luego que sepa el tipo de pocion,
+	 * aplicar la pocion, y eliminarla del inventario
+	 *
+	 * @param indice = numero de la pocion en el inventario
+	 * @return true = si se usó, false = si no se pudo usar
+	 */
+	public boolean usarObjeto(int indice) {
+		//al igual que en la tienda, como empezaba en 1 para el usuario, ahora la pasamos a 0
+		int indiceReal = indice -1;
+		
+		//comprobar si es valido el indice
+		if (indiceReal < 0 || indiceReal >= inventarioObjetos.size()) {
+			System.out.println("opcion no valida, elija un objeto del inventario");
+		return false;
+		}
+		
+		//obtenemos la pocion que se quiere usar 
+		Pociones pocion = inventarioObjetos.get(indiceReal);
+		
+		//instanceof para saber que tipo de pocion es
+		if (pocion instanceof PocionVida) {
+			//si no se pone esta linea da error
+			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
+			PocionVida pocionVida = (PocionVida) pocion;
+			//usamos la pocion sobre el jugador
+			pocionVida.usarPocionVida(personajeElegido);
+			
+		} else if (pocion instanceof PocionDaño) {
+			//si no se pone esta linea da error
+			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
+			PocionDaño pocionDaño = (PocionDaño) pocion;
+			//usamos la pocion sobre el jugador
+			pocionDaño.usarPocionDaño(personajeElegido);
+		} else if (pocion instanceof PocionDefensa) {
+			//si no se pone esta linea da error
+			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
+			PocionDefensa pocionDefensa = (PocionDefensa) pocion;
+			//usamos la pocion sobre el jugador
+			pocionDefensa.usarPocionDefensa(personajeElegido);
+		} else {
+			System.out.println("elige una de esas opciones");
+			//false porque no se pudo comprar
+			return false;
+		}
+		
+		//cuando se use la pocion, hay que eliminarla
+		inventarioObjetos.remove(indiceReal);
+		System.out.println("ya no tienes esta pocion");
+		//true porque se ha podido usar la pocion y ha salido todo bien
+		return true;
+
+	}
 	
 	
 	

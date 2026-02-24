@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  * clase base para todas las pociones del juego
  * representa un objeto que puede ser usado por el jugador durante la batalla
@@ -53,4 +55,5 @@ public class Pociones {
 	public String toString() {
 		return "precio: " + precio + " monedas";
 	}
+	
 }
