@@ -169,47 +169,8 @@ public class Jugador {
 		return true;
 
 	}
-	/**
-	 * gestiona la compra de un objeto, y comprueba si hay suficientes monedas,
-	 * que compre el objeto y le reste lo que cuesta.
-	 * @param jugador = jugador que quiere comprarlo
-	 * @param indice = indice del objeto 
- 	 * @return true = compra hecha, false = no se compró
-	 */
-	public boolean comprar2(Tienda tienda, int indice) {
-		//lo convertimos en el indice del ArrayList
-		int indiceReal = indice-1;
-		
-		//comprobamos que el indice exista (negativo o mayor al numero de objetos)
-		if (indiceReal < 0 || indiceReal >= tienda.getCatalogo().size()) {
-			System.out.println("opcion no valida"); // METER EXCEPCION
-			//devolvemos false porque no se puede comprar
-			return false;
-		}
-		
-		//tenemos que obetner el objeto que quiere comprar usando el indice real
-		Pociones objetoAcomprar = tienda.getCatalogo().get(indiceReal);
-		
-		//comprobar que el usuario tiene monedas suficientes
-		if (this.getMonedas() < objetoAcomprar.getPrecio()) {
-			System.out.println("no tienes suficientes monedas, tienes " + this.getMonedas() +
-					" monedas, y necesitas " + objetoAcomprar.getPrecio()); // METER EXCEPCION
-			//false porque no tiene monedas suficiente y no se puede comprar
-			return false;
-		}
-		
-		//vale, deberá tener monedas si llegamos aqui, entonces descontamos monedas
-		this.setMonedas(this.getMonedas() - objetoAcomprar.getPrecio());
-		
-		//hay que añadir el objeto al jugador
-		this.getInventarioObjetos2().put(new ArrayList<>(), 1);
-		
-		//mandamos un mensaje
-		System.out.println("la compra ha sido exitosa, \nte quedan " + this.getMonedas() + 
-				" monedas.");
-		return true;
-
-	}
+	
+	
 	/**
 	 * usar la pocion del inventario en el jugador, luego que sepa el tipo de pocion,
 	 * aplicar la pocion, y eliminarla del inventario
