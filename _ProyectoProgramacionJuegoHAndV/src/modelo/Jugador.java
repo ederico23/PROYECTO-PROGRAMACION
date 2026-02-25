@@ -1,6 +1,10 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
+
+import utilidades.Leer;
 /**
  * @author Mariano, Eder
  * @version 1.0
@@ -13,6 +17,8 @@ public class Jugador {
 	private Personaje personajeElegido;
 	private Integer monedas;
 	private ArrayList<Pociones> inventarioObjetos;
+	// PRUEBA
+	private Map<ArrayList<Pociones>, Integer> inventarioObjetos2;
 	/**
 	 * @param nombre
 	 * @param personajeElegido
@@ -25,6 +31,7 @@ public class Jugador {
 		this.personajeElegido = personajeElegido;
 		this.monedas = monedas;
 		this.inventarioObjetos = new ArrayList<Pociones>();
+		this.inventarioObjetos2 = new TreeMap<>();
 	}
 	/**
 	 * @return the nombre
@@ -92,6 +99,9 @@ public class Jugador {
 	public ArrayList<Pociones> getInventarioObjetos() {
 		return inventarioObjetos;
 	}
+	public Map<ArrayList<Pociones>, Integer> getInventarioObjetos2() {
+		return inventarioObjetos2;
+	}
 	@Override
 	public String toString() {
 		return "Jugador: \n"
@@ -117,6 +127,88 @@ public class Jugador {
 				System.out.println((i + 1) + ". " + inventarioObjetos.get(i));
 			}
 		}
+	}
+	/**
+	 * gestiona la compra de un objeto, y comprueba si hay suficientes monedas,
+	 * que compre el objeto y le reste lo que cuesta.
+	 * @param jugador = jugador que quiere comprarlo
+	 * @param indice = indice del objeto 
+ 	 * @return true = compra hecha, false = no se compró
+	 */
+	public boolean comprar(Tienda tienda, int indice) {
+		//lo convertimos en el indice del ArrayList
+		int indiceReal = indice-1;
+		
+		//comprobamos que el indice exista (negativo o mayor al numero de objetos)
+		if (indiceReal < 0 || indiceReal >= tienda.getCatalogo().size()) {
+			System.out.println("opcion no valida"); // METER EXCEPCION
+			//devolvemos false porque no se puede comprar
+			return false;
+		}
+		
+		//tenemos que obetner el objeto que quiere comprar usando el indice real
+		Pociones objetoAcomprar = tienda.getCatalogo().get(indiceReal);
+		
+		//comprobar que el usuario tiene monedas suficientes
+		if (this.getMonedas()< objetoAcomprar.getPrecio()) {
+			System.out.println("no tienes suficientes monedas, tienes " + this.getMonedas() +
+					" monedas, y necesitas " + objetoAcomprar.getPrecio()); // METER EXCEPCION
+			//false porque no tiene monedas suficiente y no se puede comprar
+			return false;
+		}
+		
+		//vale, deberá tener monedas si llegamos aqui, entonces descontamos monedas
+		this.setMonedas(this.getMonedas() - objetoAcomprar.getPrecio());
+		
+		//hay que añadir el objeto al jugador
+		this.getInventarioObjetos().add(objetoAcomprar);
+		
+		//mandamos un mensaje
+		System.out.println("la compra ha sido exitosa, \nte quedan " + this.getMonedas() + 
+				" monedas.");
+		return true;
+
+	}
+	/**
+	 * gestiona la compra de un objeto, y comprueba si hay suficientes monedas,
+	 * que compre el objeto y le reste lo que cuesta.
+	 * @param jugador = jugador que quiere comprarlo
+	 * @param indice = indice del objeto 
+ 	 * @return true = compra hecha, false = no se compró
+	 */
+	public boolean comprar2(Tienda tienda, int indice) {
+		//lo convertimos en el indice del ArrayList
+		int indiceReal = indice-1;
+		
+		//comprobamos que el indice exista (negativo o mayor al numero de objetos)
+		if (indiceReal < 0 || indiceReal >= tienda.getCatalogo().size()) {
+			System.out.println("opcion no valida"); // METER EXCEPCION
+			//devolvemos false porque no se puede comprar
+			return false;
+		}
+		
+		//tenemos que obetner el objeto que quiere comprar usando el indice real
+		Pociones objetoAcomprar = tienda.getCatalogo().get(indiceReal);
+		
+		//comprobar que el usuario tiene monedas suficientes
+		if (this.getMonedas() < objetoAcomprar.getPrecio()) {
+			System.out.println("no tienes suficientes monedas, tienes " + this.getMonedas() +
+					" monedas, y necesitas " + objetoAcomprar.getPrecio()); // METER EXCEPCION
+			//false porque no tiene monedas suficiente y no se puede comprar
+			return false;
+		}
+		
+		//vale, deberá tener monedas si llegamos aqui, entonces descontamos monedas
+		this.setMonedas(this.getMonedas() - objetoAcomprar.getPrecio());
+		
+		//hay que añadir el objeto al jugador
+		this.getInventarioObjetos2().put(new ArrayList<>(), 1);
+		
+		//mandamos un mensaje
+		System.out.println("la compra ha sido exitosa, \nte quedan " + this.getMonedas() + 
+				" monedas.");
+		return true;
+
 	}
 	/**
 	 * usar la pocion del inventario en el jugador, luego que sepa el tipo de pocion,
@@ -166,12 +258,42 @@ public class Jugador {
 		
 		//cuando se use la pocion, hay que eliminarla
 		inventarioObjetos.remove(indiceReal);
-		System.out.println("ya no tienes esta pocion");
+		System.out.println("Pocion usada");
 		//true porque se ha podido usar la pocion y ha salido todo bien
 		return true;
 
 	}
-	
+	// CREO QUE ESTE METODO NO HACE FALTA
+	/**
+	 * abrir invnetario para usar pociones dentro de la batalla
+	 * si estuviese vacio no se abrirá
+	 * 
+	 * @param jugador = jugador que quiere usarlo
+	 * @return true = si se usa un objeto,  false = no se usó nada o no se abrió
+	 */
+	public boolean abrirInventarioBatalla() {
+		
+		//comprobar si el inventario esta vacio antes de nada
+		if (this.getInventarioObjetos().isEmpty()) {
+			System.out.println("--INVENTARIO VACIO--");
+			return false;
+		}
+		
+		//mostrar el inventairo
+		this.mostrarInventario();
+		
+		//pedir que pocion quiere usar, y si se arrepiente o se confunde, puede salir dando al 0 
+		int opcion = Leer.leerEntero("¿que pocion quieres usar? pulsa 0 para cancelar");
+		
+		//si elije 0, adios
+		if (opcion == 0) {
+			System.out.println("CANCELADO");
+		}
+		
+		//usar objeto 
+		//el metodo ya devuelve true si va todo bien, y si no un false
+		return this.usarObjeto(opcion);
+	}
 	
 	
 }

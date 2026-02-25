@@ -17,15 +17,12 @@ public class TiendaController {
 	 * atributo de tienda para poder usarla 
 	 */
 	private Tienda tienda;
-
-	
 	
 	/**
 	 * contructor
 	 * @param tienda
 	 */
 	public TiendaController() {
-		super();
 		this.tienda = new Tienda();
 	}
 
@@ -38,7 +35,7 @@ public class TiendaController {
 	 */
 	public void abrirTienda(Jugador jugador) {
 		System.out.println("**********  TIENDA  **********");
-		System.out.println("tienes " + jugador.getMonedas() + " monedas");
+		System.out.println(jugador.getNombre()+" tienes " + jugador.getMonedas() + " monedas");
 		
 		//guardar opcion
 		int opcion;
@@ -55,8 +52,9 @@ public class TiendaController {
 			if (opcion != 0) {
 				//llamamos al metood comprar que se ocupa de saber si tiene monedas y si el 
 				//indice es valido (es decir, que ha introducido una opcioon valida)
-				//le psamos jugador y opcion
-				tienda.comprar(jugador, opcion);
+				//le psamos tienda y opcion
+				jugador.comprar(tienda, opcion);
+				jugador.mostrarInventario();
 			}	
 		} while (opcion != 0);
 		
@@ -67,36 +65,4 @@ public class TiendaController {
 		//esto no va dentro del syso porque el metodo ya imprime por su propia cuenta
 		jugador.mostrarInventario();
 	}
-	
-	/**
-	 * abrir invnetario para usar pociones dentro de la batalla
-	 * si estuviese vacio no se abrirá
-	 * 
-	 * @param jugador = jugador que quiere usarlo
-	 * @return true = si se usa un objeto,  false = no se usó nada o no se abrió
-	 */
-	public boolean abrirInventarioBatalla(Jugador jugador) {
-		
-		//comprobar si el inventario esta vacio antes de nada
-		if (jugador.getInventarioObjetos().isEmpty()) {
-			System.out.println("--INVENTARIO VACIO--");
-			return false;
-		}
-		
-		//mostrar el inventairo
-		jugador.mostrarInventario();
-		
-		//pedir que pocion quiere usar, y si se arrepiente o se confunde, puede salir dando al 0 
-		int opcion = Leer.leerEntero("¿que pocion quieres usar? pulsa 0 para cancelar");
-		
-		//si elije 0, adios
-		if (opcion == 0) {
-			System.out.println("CANCELADO");
-		}
-		
-		//usar objeto 
-		//el metodo ya devuelve true si va todo bien, y si no un false
-		return jugador.usarObjeto(opcion);
-	}
-	
 }

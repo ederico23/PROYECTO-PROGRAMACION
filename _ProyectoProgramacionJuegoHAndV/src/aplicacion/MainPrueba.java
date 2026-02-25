@@ -1,6 +1,7 @@
 package aplicacion;
 
 import controlador.CombateController;
+import controlador.TiendaController;
 import modelo.Jugador;
 import modelo.PersonajeFuerza;
 import modelo.Personaje;
@@ -21,11 +22,15 @@ public class MainPrueba {
 				+jugador2);*/
 		// Crear vista
 		CrearMenuPrueba vista = new CrearMenuPrueba();
-		// Creamos el controller
+		// Creamos el tienda controller
+		TiendaController tiendaControlador = new TiendaController();
+		// Creamos el combate controller
 		CombateController juegoControlador = new CombateController(jugador1, jugador2,
 				vista);
 		
-		// Iniciamos juego
+		// Iniciamos 
+		tiendaControlador.abrirTienda(jugador1);
+		tiendaControlador.abrirTienda(jugador2);
 		juegoControlador.iniciarCombate();
 		
 		
