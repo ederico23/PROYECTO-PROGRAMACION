@@ -1,6 +1,5 @@
 package controlador;
-
-
+//crear jugadores hecho pero hay fallo en la tienda)
 import modelo.Jugador;
 import modelo.Personaje;
 import modelo.PersonajeFuerza;
@@ -8,7 +7,6 @@ import modelo.PersonajeInteligencia;
 import modelo.PersonajePersonalizado;
 import modelo.PersonajeResistencia;
 import modelo.PersonajeVelocidad;
-
 import utilidades.Leer;
 
 /**
@@ -29,89 +27,90 @@ public class CreadorPersonajesController {
 	private static final int REPARTIR_PUNTOS = 50;
 
 	/**
-	 * puntos minimos que puede tener una stat
+	 * puntos minimos que puede tener una stt
 	 */
-	private static final int MIN_PTS_STAT = 2;
-
-	/**
-	 * monedas que tiene el jugador al empezar
-	 */
-	private static final int MONEDAS_INICIALES = 100;
+	private static final int MIN_PTS_STAT = 1;
 
 	/**
 	 * vida que va a tener todos los personajes personalizados
+	 * 2 opciones, o añadimos mas puntos en REPARTIR_PUNTOS 
+	 * o menos puntos a repartir y dejamos la vida fija
 	 */
 	private static final double VIDA_CUSTOM = 100.0;
 
+	private static final int MONEDAS_INICIALES = 100;
 	/**
 	 * metodo para crear el jugador, pide:
 	 * nombre
 	 * muestra opciones
 	 * crea el jugador
 	 * devuelve el jugador creado al completo
+	 * 
+	 * 
 	 */
 	public Jugador crearJugador() {
 
-		// mensaje de bienvenida + pedir nombre
+		//mensaje de bienvenida + pedir nombre
 		String nombre = Leer.leerFrase("----BIENVENIDOS A H & V---- \n¿como quieres que se"
 				+ " llame tu personaje del juego?");
 
 		System.out.println("hola " + nombre + ", ahora que elige tu tipo de personaje");
 
-		// elegir el tipo de personaje
-		// creamos un array de Strings para poner el tipo de personaje
+		//elegir el tipo de personaje
+		//creamos un array de Strings para poner el tipo de personaje
 		String[] menuTipo = {
-				"salir",               // 0
-				"personaje predeterminado", // 1
-				"crear personaje"       // 2
+				"salir", //0
+				"personaje predeterminado", //1
+				"crear personaje" //2
 		};
 
 		int opcionTipo;
 
-		// bucle
+		//bucle
 		do {
 			System.out.println("¿que tipo de personaje quieres?");
 
-			// recorremos el array desde 1 (el 0 es salir)
-			for (int i = 0; i < menuTipo.length; i++) {
+			//recorremos el array
+			for (int i = 1; i < menuTipo.length; i++) {
 				System.out.println(i + ". " + menuTipo[i]);
 			}
 
 			opcionTipo = Leer.leerEntero("elige una opcion: ");
-		} while (opcionTipo != 0 && opcionTipo != 1 && opcionTipo != 2);
+		} while (opcionTipo != 1 && opcionTipo != 2);
 
-		// crear personaje
+		//crear personaje 
 		Personaje personaje;
 
-		// que opcion quiere el jugador
+		//que opcion quiere el jugador
 		if (opcionTipo == 1) {
+
 			// personaje predeterminado
 			
 			personaje = elegirPersonajePredefinido();
-			Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
 
-			System.out.println("--PERSONAJE CREADO--");
-			System.out.println(jugador);
-			return jugador;
-
-		} else if (opcionTipo == 2){
-			// personaje custom
+			//personaje predeterminadp
 			personaje = elegirPersonajeCustom();
-			Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
+			//(crear jugadores hecho pero hay fallo en la tienda)
 
-			System.out.println("--PERSONAJE CREADO--");
-			System.out.println(jugador);
-			return jugador;
-		}else {
-			System.out.println("Has salido del juego");
-			return null;
-		}	
+		} else {
+			//personaje custom
+			personaje = elegirPersonajeCustom();
+		}
+
+
+	
+		Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
+
+		//crear el personaje y devolver el jugador
+		//nombre y personaje creados
+		//(crear jugadores hecho pero hay fallo en la tienda)
+
+		System.out.println("--PERSONAJE CREADO--");
+		return jugador;	
 	}
 
 	/**
-	 * metodo personaje predefinido
-	 * 
-	 * @return Personaje elegido por el usuario
+	 * metodo personaje predefinido 
 	 */
 	private Personaje elegirPersonajePredefinido() {
 		System.out.println("PERSONAJES PREDEFINIDOS");
@@ -123,44 +122,56 @@ public class CreadorPersonajesController {
 
 		int opcion;
 
-		// bucle hasta que elija uno de los 4
+		//bucle hasta que elija uno de los 4
 		do {
+
 			
 			opcion = Leer.leerEntero("elige tu personaje (1-4):");
 
+
+			opcion = Leer.leerEntero("elige tu personaje (1-4");
+			// (crear jugadores hecho pero hay fallo en la tienda)
+
 		} while (opcion < 1 || opcion > 4);
 
-		switch (opcion) {
-		case 1:
+		switch(opcion) {
+		case 1: 
+			//eleccion personaje fuerza
 			System.out.println("has elegido de tipo fuerza");
 			return new PersonajeFuerza();
 
 		case 2:
+			//eleccion personaje inteligencia
 			System.out.println("has elegido tipo inteligencia");
 			return new PersonajeInteligencia();
 
 		case 3:
+			//eleccion personaje resistencia
 			System.out.println("has elegido tipo resistencia");
 			return new PersonajeResistencia();
 
-		case 4:
+		case 4: 
+			//eleccion velocidad
 			System.out.println("has elegido tipo velocidad");
 			return new PersonajeVelocidad();
 
 		default:
+
 		
 			System.out.println("opcion no valida, asignando fuerza por defecto");
 			return new PersonajeFuerza();
 		}
+
 	}
+	
 
 	/**
 	 * permite crear un personaje con caracterisiticas custom
 	 * 
-	 * @return Personaje con las stats elegidas por el usuario
 	 */
 	private Personaje elegirPersonajeCustom() {
 		System.out.println("--CREA TU PERSONAJE--");
+
 
 		System.out.println("tienes " + REPARTIR_PUNTOS + " puntos a repartir entre tus stats");
 		System.out.println("cada stat tiene que tener minimo " + MIN_PTS_STAT + " punto");
@@ -254,5 +265,10 @@ public class CreadorPersonajesController {
 				statVelocidad,
 				statResistencia
 				);
+
+		
+		//(crear jugadores hecho pero hay fallo en la tienda)
 	}
+
+
 }

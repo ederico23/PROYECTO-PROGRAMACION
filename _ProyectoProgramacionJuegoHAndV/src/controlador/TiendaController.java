@@ -53,7 +53,7 @@ public class TiendaController {
 				//llamamos al metood comprar que se ocupa de saber si tiene monedas y si el 
 				//indice es valido (es decir, que ha introducido una opcioon valida)
 				//le psamos jugador y opcion
-				//tienda.comprar(jugador, opcion);
+			//	tienda.comprar(jugador, opcion);
 				jugador.mostrarInventario();
 			}	
 		} while (opcion != 0 && jugador.getMonedas() > 0);
