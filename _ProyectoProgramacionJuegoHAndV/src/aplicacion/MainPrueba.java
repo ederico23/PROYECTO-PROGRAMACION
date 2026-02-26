@@ -12,7 +12,7 @@ import vista.CrearMenuPrueba;
 public class MainPrueba {
 
 	public static void main(String[] args) {
-		
+		// prueba git
 		// Creamos Jugadores con sus personajes 
 		Jugador jugador1 = new Jugador("Mariano", new PersonajeFuerza(), 33);
 		Jugador jugador2 = new Jugador("Eder", new PersonajeInteligencia(), 22);
