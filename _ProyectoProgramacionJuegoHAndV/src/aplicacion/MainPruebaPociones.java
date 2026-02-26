@@ -88,11 +88,11 @@ public class MainPruebaPociones {
 
 			case 7: //jugador1 usa una poción de su inventario
 				// abrirInventarioEnBatalla() muestra el inventario y aplica la poción elegida
-				tiendaControlador.abrirInventarioBatalla(jugador1);
+				//tiendaControlador.abrirInventarioBatalla(jugador1);
 				break;
 
 			case 8: //jugador2 usa una poción de su inventario
-				tiendaControlador.abrirInventarioBatalla(jugador2);
+				//tiendaControlador.abrirInventarioBatalla(jugador2);
 				break;
 
 			} // fin switch
