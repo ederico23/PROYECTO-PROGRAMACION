@@ -60,7 +60,7 @@ public class PersonajeVelocidad extends Personaje {
 	}
 	@Override
 	public void movimientoEspecialDeClase(Personaje personajeObjetivo) {
-		// TODO Auto-generated method stub
+		// esquivar de alguna forma
 		
 	}
 

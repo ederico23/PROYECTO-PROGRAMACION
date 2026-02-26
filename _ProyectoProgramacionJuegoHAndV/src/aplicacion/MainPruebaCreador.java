@@ -26,11 +26,9 @@ public class MainPruebaCreador {
 		CombateController combateControlador = new CombateController(jugador1, jugador2, vista);
 		
 		//pruea
-		
+		// Colocar condicion de que tenga que existir jugador
 		tiendaControlador.abrirTienda(jugador1);
 		tiendaControlador.abrirTienda(jugador2);
-		
-		
 		System.out.println("-----INICIO COMBATE------");
 		combateControlador.iniciarCombate();
 		

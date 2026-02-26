@@ -31,7 +31,7 @@ public class CreadorPersonajesController {
 	/**
 	 * puntos minimos que puede tener una stat
 	 */
-	private static final int MIN_PTS_STAT = 1;
+	private static final int MIN_PTS_STAT = 2;
 
 	/**
 	 * monedas que tiene el jugador al empezar
@@ -73,12 +73,12 @@ public class CreadorPersonajesController {
 			System.out.println("¿que tipo de personaje quieres?");
 
 			// recorremos el array desde 1 (el 0 es salir)
-			for (int i = 1; i < menuTipo.length; i++) {
+			for (int i = 0; i < menuTipo.length; i++) {
 				System.out.println(i + ". " + menuTipo[i]);
 			}
 
 			opcionTipo = Leer.leerEntero("elige una opcion: ");
-		} while (opcionTipo != 1 && opcionTipo != 2);
+		} while (opcionTipo != 0 && opcionTipo != 1 && opcionTipo != 2);
 
 		// crear personaje
 		Personaje personaje;
@@ -88,18 +88,24 @@ public class CreadorPersonajesController {
 			// personaje predeterminado
 			
 			personaje = elegirPersonajePredefinido();
+			Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
 
-		} else {
+			System.out.println("--PERSONAJE CREADO--");
+			System.out.println(jugador);
+			return jugador;
+
+		} else if (opcionTipo == 2){
 			// personaje custom
 			personaje = elegirPersonajeCustom();
-		}
+			Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
 
-	
-		Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
-
-		System.out.println("--PERSONAJE CREADO--");
-		System.out.println(jugador);
-		return jugador;
+			System.out.println("--PERSONAJE CREADO--");
+			System.out.println(jugador);
+			return jugador;
+		}else {
+			System.out.println("Has salido del juego");
+			return null;
+		}	
 	}
 
 	/**

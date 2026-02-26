@@ -60,7 +60,8 @@ public class PersonajeResistencia extends Personaje {
 	}
 	@Override
 	public void movimientoEspecialDeClase(Personaje personajeObjetivo) {
-		// TODO Auto-generated method stub
+		// no atacar durante un par de turnos y coger un porcentaje del daño recibido y sumarlo a 
+		// su ataque al terminar los tres turnos
 		
 	}
 	
