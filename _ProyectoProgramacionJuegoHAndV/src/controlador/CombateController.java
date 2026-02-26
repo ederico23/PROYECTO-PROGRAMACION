@@ -43,10 +43,17 @@ public class CombateController {
 		// Variable para eleccion
 		int opcion;
 		// Cadenas de texto a imprimir 
-		String[] menu = {"Salir","Mostrar estadisticas de "+jugador1.getNombre(), 
-				"Mostrar estadisticas de "+jugador2.getNombre(), "Ataque", "Usar objeto"};
-		String[] subMenuAtaques = {"Volver","Ataque fisico", "Ataque magico", "Movimiento especial"};
-		String[] subMenuObjetos = {"Volver", "Usar pocion elegida"};
+		String[] menu = {
+				"Salir",
+				"Mostrar estadisticas de "+jugador1.getNombre(), 
+				"Mostrar estadisticas de "+jugador2.getNombre(), 
+				"Ataque", 
+				"Usar objeto"};
+		String[] subMenuAtaques = {"Volver",
+				"Ataque fisico", 
+				"Ataque magico", 
+				"Movimiento especial"};
+		String[] subMenuObjetos = {"No implementado"};
 		
 		do {
 			// Asignamos los personajes de los jugadores
@@ -91,16 +98,7 @@ public class CombateController {
 				}
 				break;
 			case 4: // Usar objeto
-				jugadorAtacante.mostrarInventario();
 				int subOpcionObjetos = vista.mostrarMenu(subMenuObjetos, jugadorAtacante.getNombre());
-				switch(subOpcionObjetos) {
-				case 0: // Volver
-					cambiarTurno = false;
-					break;
-				case 1: // Usar Pocion vida
-					jugadorAtacante.usarObjeto(subOpcionObjetos);
-					break;
-				}
 				break;
 			}
 			if (cambiarTurno == true) {

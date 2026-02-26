@@ -1,7 +1,6 @@
 package aplicacion;
 
 import controlador.CombateController;
-import controlador.TiendaController;
 import modelo.Jugador;
 import modelo.PersonajeFuerza;
 import modelo.Personaje;
@@ -13,7 +12,7 @@ import vista.CrearMenuPrueba;
 public class MainPrueba {
 
 	public static void main(String[] args) {
-		//prueba git
+		
 		// Creamos Jugadores con sus personajes 
 		Jugador jugador1 = new Jugador("Mariano", new PersonajeFuerza(), 33);
 		Jugador jugador2 = new Jugador("Eder", new PersonajeInteligencia(), 22);
@@ -22,15 +21,12 @@ public class MainPrueba {
 				+jugador2);*/
 		// Crear vista
 		CrearMenuPrueba vista = new CrearMenuPrueba();
-		// Creamos el tienda controller
-		TiendaController tiendaControlador = new TiendaController();
-		// Creamos el combate controller
+		// Creamos el controller
 		CombateController juegoControlador = new CombateController(jugador1, jugador2,
 				vista);
 		
-		// Iniciamos 
-		tiendaControlador.abrirTienda(jugador1);
-		tiendaControlador.abrirTienda(jugador2);
+		// Iniciamos juego
+		System.out.println("********** INCIO DEL JUEGO *********");
 		juegoControlador.iniciarCombate();
 		
 		

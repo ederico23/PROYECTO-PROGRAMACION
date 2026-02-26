@@ -1,10 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.TreeMap;
-
-import utilidades.Leer;
 /**
  * @author Mariano, Eder
  * @version 1.0
@@ -17,8 +13,6 @@ public class Jugador {
 	private Personaje personajeElegido;
 	private Integer monedas;
 	private ArrayList<Pociones> inventarioObjetos;
-	// PRUEBA
-	private Map<ArrayList<Pociones>, Integer> inventarioObjetos2;
 	/**
 	 * @param nombre
 	 * @param personajeElegido
@@ -31,7 +25,6 @@ public class Jugador {
 		this.personajeElegido = personajeElegido;
 		this.monedas = monedas;
 		this.inventarioObjetos = new ArrayList<Pociones>();
-		this.inventarioObjetos2 = new TreeMap<>();
 	}
 	/**
 	 * @return the nombre
@@ -99,9 +92,6 @@ public class Jugador {
 	public ArrayList<Pociones> getInventarioObjetos() {
 		return inventarioObjetos;
 	}
-	public Map<ArrayList<Pociones>, Integer> getInventarioObjetos2() {
-		return inventarioObjetos2;
-	}
 	@Override
 	public String toString() {
 		return "Jugador: \n"
@@ -150,7 +140,7 @@ public class Jugador {
 		Pociones objetoAcomprar = tienda.getCatalogo().get(indiceReal);
 		
 		//comprobar que el usuario tiene monedas suficientes
-		if (this.getMonedas()< objetoAcomprar.getPrecio()) {
+		if (this.getMonedas() < objetoAcomprar.getPrecio()) {
 			System.out.println("no tienes suficientes monedas, tienes " + this.getMonedas() +
 					" monedas, y necesitas " + objetoAcomprar.getPrecio()); // METER EXCEPCION
 			//false porque no tiene monedas suficiente y no se puede comprar
@@ -169,8 +159,6 @@ public class Jugador {
 		return true;
 
 	}
-	
-	
 	/**
 	 * usar la pocion del inventario en el jugador, luego que sepa el tipo de pocion,
 	 * aplicar la pocion, y eliminarla del inventario
@@ -184,7 +172,7 @@ public class Jugador {
 		
 		//comprobar si es valido el indice
 		if (indiceReal < 0 || indiceReal >= inventarioObjetos.size()) {
-			System.out.println("opcion no valida, elija un objeto del inventario");
+			System.out.println("opcion no valida, elija un objeto del inventario"); // EXCEPCION
 		return false;
 		}
 		
@@ -219,42 +207,12 @@ public class Jugador {
 		
 		//cuando se use la pocion, hay que eliminarla
 		inventarioObjetos.remove(indiceReal);
-		System.out.println("Pocion usada");
+		System.out.println("ya no tienes esta pocion");
 		//true porque se ha podido usar la pocion y ha salido todo bien
 		return true;
 
 	}
-	// CREO QUE ESTE METODO NO HACE FALTA
-	/**
-	 * abrir invnetario para usar pociones dentro de la batalla
-	 * si estuviese vacio no se abrirá
-	 * 
-	 * @param jugador = jugador que quiere usarlo
-	 * @return true = si se usa un objeto,  false = no se usó nada o no se abrió
-	 */
-	public boolean abrirInventarioBatalla() {
-		
-		//comprobar si el inventario esta vacio antes de nada
-		if (this.getInventarioObjetos().isEmpty()) {
-			System.out.println("--INVENTARIO VACIO--");
-			return false;
-		}
-		
-		//mostrar el inventairo
-		this.mostrarInventario();
-		
-		//pedir que pocion quiere usar, y si se arrepiente o se confunde, puede salir dando al 0 
-		int opcion = Leer.leerEntero("¿que pocion quieres usar? pulsa 0 para cancelar");
-		
-		//si elije 0, adios
-		if (opcion == 0) {
-			System.out.println("CANCELADO");
-		}
-		
-		//usar objeto 
-		//el metodo ya devuelve true si va todo bien, y si no un false
-		return this.usarObjeto(opcion);
-	}
+	
 	
 	
 }
