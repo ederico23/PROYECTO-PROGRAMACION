@@ -25,6 +25,7 @@ public class MainPruebaCreador {
 		TiendaController tiendaControlador = new TiendaController();
 		CombateController combateControlador = new CombateController(jugador1, jugador2, vista);
 		
+		//pruea
 		
 		tiendaControlador.abrirTienda(jugador1);
 		tiendaControlador.abrirTienda(jugador2);

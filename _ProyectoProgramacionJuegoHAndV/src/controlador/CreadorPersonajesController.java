@@ -1,8 +1,6 @@
 package controlador;
 
-// ERROR LÍNEA 3 CORREGIDO: faltaba importar PersonajePersonalizado.
-// Sin este import, Java no sabe qué es PersonajePersonalizado cuando
-// intentas usarlo al final del método elegirPersonajeCustom().
+
 import modelo.Jugador;
 import modelo.Personaje;
 import modelo.PersonajeFuerza;
@@ -88,9 +86,7 @@ public class CreadorPersonajesController {
 		// que opcion quiere el jugador
 		if (opcionTipo == 1) {
 			// personaje predeterminado
-			// ERROR ADICIONAL CORREGIDO: el método se llama elegirPersonajePredefinido()
-			// pero en tu if lo llamabas elegirPersonajePredeterminado() → nombre distinto,
-			// Java no lo encontraba y daba error de compilación.
+			
 			personaje = elegirPersonajePredefinido();
 
 		} else {
@@ -98,11 +94,7 @@ public class CreadorPersonajesController {
 			personaje = elegirPersonajeCustom();
 		}
 
-		// ERROR LÍNEA 86 CORREGIDO: jugador.getMonedas() → MONEDAS_INICIALES
-		// El problema es que intentabas usar jugador.getMonedas() antes de crear jugador.
-		// jugador aún no existe en ese momento, así que Java da error porque no puede
-		// llamar a un método de un objeto que todavía no se ha creado.
-		// La solución es usar directamente la constante MONEDAS_INICIALES.
+	
 		Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
 
 		System.out.println("--PERSONAJE CREADO--");
@@ -127,9 +119,7 @@ public class CreadorPersonajesController {
 
 		// bucle hasta que elija uno de los 4
 		do {
-			// ERROR ADICIONAL CORREGIDO: faltaba cerrar el paréntesis del String.
-			// Tenías: leerEntero("elige tu personaje (1-4")
-			// Correcto: leerEntero("elige tu personaje (1-4):")
+			
 			opcion = Leer.leerEntero("elige tu personaje (1-4):");
 
 		} while (opcion < 1 || opcion > 4);
@@ -152,10 +142,7 @@ public class CreadorPersonajesController {
 			return new PersonajeVelocidad();
 
 		default:
-			// ERROR ADICIONAL CORREGIDO: el default no tenía return.
-			// Un método que devuelve Personaje SIEMPRE tiene que devolver algo
-			// en todos los caminos posibles, incluyendo el default del switch.
-			// Aunque el do-while impide llegar aquí, Java lo exige igual.
+		
 			System.out.println("opcion no valida, asignando fuerza por defecto");
 			return new PersonajeFuerza();
 		}
@@ -203,11 +190,6 @@ public class CreadorPersonajesController {
 			// numero de stats que quedan DESPUES de esta (no contando la actual)
 			int statsRestantes = nombresStats.length - 1 - i;
 
-			// ERROR LÍNEA 244 CORREGIDO: maxAsignar usaba statsRestantes en vez de puntosRestantes
-			// Tenías: int maxAsignar = statsRestantes - (statsRestantes * MIN_PTS_STAT)
-			// Eso calculaba el máximo sobre las stats que quedan, no sobre los PUNTOS que quedan.
-			// Con statsRestantes=5 y MIN_PTS_STAT=1 dabas: 5 - (5*1) = 0 → siempre salía 0.
-			// Correcto: partir de puntosRestantes y restar el mínimo reservado para las siguientes.
 			int maxAsignar = puntosRestantes - (statsRestantes * MIN_PTS_STAT);
 
 			// guarda los pts que asigna a una stat
