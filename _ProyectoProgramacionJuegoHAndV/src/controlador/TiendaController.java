@@ -17,9 +17,6 @@ public class TiendaController {
 	 * atributo de tienda para poder usarla 
 	 */
 	private Tienda tienda;
-
-	
-	
 	/**
 	 * contructor
 	 * @param tienda
@@ -57,8 +54,9 @@ public class TiendaController {
 				//indice es valido (es decir, que ha introducido una opcioon valida)
 				//le psamos jugador y opcion
 				tienda.comprar(jugador, opcion);
+				jugador.mostrarInventario();
 			}	
-		} while (opcion != 0);
+		} while (opcion != 0 && jugador.getMonedas() > 0);
 		
 		//mensaje de adios, actualizando las monedas
 		System.out.println("HAS SALIDO DE LA TIENDA" + 

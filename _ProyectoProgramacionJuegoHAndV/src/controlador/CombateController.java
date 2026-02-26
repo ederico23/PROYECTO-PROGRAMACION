@@ -43,9 +43,16 @@ public class CombateController {
 		// Variable para eleccion
 		int opcion;
 		// Cadenas de texto a imprimir 
-		String[] menu = {"Salir","Mostrar estadisticas de "+jugador1.getNombre(), 
-				"Mostrar estadisticas de "+jugador2.getNombre(), "Ataque", "Usar objeto"};
-		String[] subMenuAtaques = {"Volver","Ataque fisico", "Ataque magico", "Movimiento especial"};
+		String[] menu = {
+				"Salir",
+				"Mostrar estadisticas de "+jugador1.getNombre(), 
+				"Mostrar estadisticas de "+jugador2.getNombre(), 
+				"Ataque", 
+				"Usar objeto"};
+		String[] subMenuAtaques = {"Volver",
+				"Ataque fisico", 
+				"Ataque magico", 
+				"Movimiento especial"};
 		String[] subMenuObjetos = {"No implementado"};
 		
 		do {
