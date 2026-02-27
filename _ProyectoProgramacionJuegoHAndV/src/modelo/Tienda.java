@@ -44,7 +44,7 @@ public class Tienda {
 	 * metodo para mostrar el catalogo de la tienda
 	 */
 	public void mostrarCatalogo() {
-		System.out.println("-----TIENDA----");
+		System.out.println("-----TIENDA----"); // Mostrar el jugador tambien
 		//hacemos un for para recorrer el ArrayList
 		for (int i = 0; i < catalogo.size(); i++) {
 			//el i +1 es para que empiece en 1 en vez de 0

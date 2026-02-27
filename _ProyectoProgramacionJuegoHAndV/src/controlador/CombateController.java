@@ -2,14 +2,14 @@ package controlador;
 
 import modelo.Jugador;
 import modelo.Personaje;
-import vista.CrearMenuPrueba;
+import vista.JuegoVistaConsola;
 /**
  * Clase que controla la logica de la batalla
  */
 public class CombateController {
 	private Jugador jugador1;
 	private Jugador jugador2;
-	private CrearMenuPrueba vista;
+	private JuegoVistaConsola vista;
 	
 	/**
 	 * Constructor de clase
@@ -17,7 +17,7 @@ public class CombateController {
 	 * @param jugador2
 	 * @param vista
 	 */
-	public CombateController(Jugador jugador1, Jugador jugador2, CrearMenuPrueba vista) {
+	public CombateController(Jugador jugador1, Jugador jugador2, JuegoVistaConsola vista) {
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;
 		this.vista = vista;
@@ -99,6 +99,14 @@ public class CombateController {
 				break;
 			case 4: // Usar objeto
 				int subOpcionObjetos = vista.mostrarMenu(subMenuObjetos, jugadorAtacante.getNombre());
+				jugadorAtacante.mostrarInventario();
+				switch (subOpcionObjetos) {
+				case 0: // Volver
+					cambiarTurno = false;
+					break;
+				case 1: // Pocion
+					
+				}
 				break;
 			}
 			if (cambiarTurno == true) {

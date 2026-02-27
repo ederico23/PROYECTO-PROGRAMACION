@@ -1,6 +1,9 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 /**
  * @author Mariano, Eder
  * @version 1.0
@@ -12,7 +15,7 @@ public class Jugador {
 	private int contadorBatallasPerdidas;
 	private Personaje personajeElegido;
 	private Integer monedas;
-	private ArrayList<Pociones> inventarioObjetos;
+	private Map<Pociones, Integer> inventarioObjetos;
 	/**
 	 * @param nombre
 	 * @param personajeElegido
@@ -24,7 +27,7 @@ public class Jugador {
 		this.nombre = nombre;
 		this.personajeElegido = personajeElegido;
 		this.monedas = monedas;
-		this.inventarioObjetos = new ArrayList<Pociones>();
+		this.inventarioObjetos = new HashMap<Pociones, Integer>();
 	}
 	/**
 	 * @return the nombre
@@ -86,10 +89,8 @@ public class Jugador {
 	public void setMonedas(Integer monedas) {
 		this.monedas = monedas;
 	}
-	/**
-	 * @return the inventarioObjetos
-	 */
-	public ArrayList<Pociones> getInventarioObjetos() {
+	
+	public Map<Pociones, Integer> getInventarioObjetos() {
 		return inventarioObjetos;
 	}
 	@Override
@@ -102,7 +103,6 @@ public class Jugador {
 	}
 	/**
 	 * muestra los objetos que tiene el jugador
-	 * 
 	 */
 	public void mostrarInventario() {
 		System.out.println("---- INVENTARIO DE " + nombre + " ----");
@@ -111,10 +111,11 @@ public class Jugador {
 		if (inventarioObjetos.isEmpty()) {
 			System.out.println("no tienes pociones en el inventario");
 		} else {
-			//si hay pociones se muestran
-			for (int i = 0; i < inventarioObjetos.size(); i++) {
+			int i = 1;
+			for (Map.Entry<Pociones, Integer> entry : inventarioObjetos.entrySet()) {
 				//lo mismo que en la tienda, (i+1) para que empiece en 1
-				System.out.println((i + 1) + ". " + inventarioObjetos.get(i));
+				System.out.println(i + ". " + entry.getKey() + " x" + entry.getValue());
+				i++;
 			}
 		}
 	}
@@ -150,8 +151,12 @@ public class Jugador {
 		//vale, deberá tener monedas si llegamos aqui, entonces descontamos monedas
 		this.setMonedas(this.getMonedas() - objetoAcomprar.getPrecio());
 		
-		//hay que añadir el objeto al jugador
-		this.getInventarioObjetos().add(objetoAcomprar);
+		// Añadimos el objeto y si no contiene nada pues lo crea con 1, ya que el default es 0 y luego le suma 1
+		// Si tiene pues simplemente suma
+		inventarioObjetos.put(
+			    objetoAcomprar,
+			    inventarioObjetos.getOrDefault(objetoAcomprar, 0) + 1
+			);
 		
 		//mandamos un mensaje
 		System.out.println("la compra ha sido exitosa, \nte quedan " + this.getMonedas() + 
@@ -166,48 +171,67 @@ public class Jugador {
 	 * @param indice = numero de la pocion en el inventario
 	 * @return true = si se usó, false = si no se pudo usar
 	 */
-	public boolean usarObjeto(int indice) {
+	public boolean usarObjeto(Integer indice) {
+		// Si no hay objetos el metodo no se ejecuta
+		if (inventarioObjetos.isEmpty()) {
+	        System.out.println("No tienes pociones");
+	        return false;
+	    }
+		// Creamos un arraylist con las claves del inventario
+	    List<Pociones> listaPociones = new ArrayList<>(inventarioObjetos.keySet());
+	    
 		//al igual que en la tienda, como empezaba en 1 para el usuario, ahora la pasamos a 0
-		int indiceReal = indice -1;
+		Integer indiceReal = indice -1;
 		
 		//comprobar si es valido el indice
 		if (indiceReal < 0 || indiceReal >= inventarioObjetos.size()) {
 			System.out.println("opcion no valida, elija un objeto del inventario"); // EXCEPCION
-		return false;
-		}
-		
-		//obtenemos la pocion que se quiere usar 
-		Pociones pocion = inventarioObjetos.get(indiceReal);
-		
-		//instanceof para saber que tipo de pocion es
-		if (pocion instanceof PocionVida) {
-			//si no se pone esta linea da error
-			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
-			PocionVida pocionVida = (PocionVida) pocion;
-			//usamos la pocion sobre el jugador
-			pocionVida.usarPocionVida(personajeElegido);
-			
-		} else if (pocion instanceof PocionDaño) {
-			//si no se pone esta linea da error
-			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
-			PocionDaño pocionDaño = (PocionDaño) pocion;
-			//usamos la pocion sobre el jugador
-			pocionDaño.usarPocionDaño(personajeElegido);
-		} else if (pocion instanceof PocionDefensa) {
-			//si no se pone esta linea da error
-			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
-			PocionDefensa pocionDefensa = (PocionDefensa) pocion;
-			//usamos la pocion sobre el jugador
-			pocionDefensa.usarPocionDefensa(personajeElegido);
-		} else {
-			System.out.println("elige una de esas opciones");
-			//false porque no se pudo comprar
 			return false;
 		}
 		
-		//cuando se use la pocion, hay que eliminarla
-		inventarioObjetos.remove(indiceReal);
+		//obtenemos la pocion que se quiere usar 
+		Pociones pocion = listaPociones.get(indiceReal);
+		
+		// Usar pocion, la pocion ya sabe cual es y como tiene que usarse
+		pocion.usar(personajeElegido);
+		
+//		//instanceof para saber que tipo de pocion es
+//		if (pocion instanceof PocionVida) {
+//			//si no se pone esta linea da error
+//			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
+//			PocionVida pocionVida = (PocionVida) pocion;
+//			//usamos la pocion sobre el jugador
+//			pocionVida.usarPocionVida(personajeElegido);
+//			
+//		} else if (pocion instanceof PocionDaño) {
+//			//si no se pone esta linea da error
+//			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
+//			PocionDaño pocionDaño = (PocionDaño) pocion;
+//			//usamos la pocion sobre el jugador
+//			pocionDaño.usarPocionDaño(personajeElegido);
+//		} else if (pocion instanceof PocionDefensa) {
+//			//si no se pone esta linea da error
+//			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
+//			PocionDefensa pocionDefensa = (PocionDefensa) pocion;
+//			//usamos la pocion sobre el jugador
+//			pocionDefensa.usarPocionDefensa(personajeElegido);
+//		} else {
+//			System.out.println("elige una de esas opciones");
+//			//false porque no se pudo comprar
+//			return false;
+//		}
+		
+		// Reducir cantidad
+		int cantidad = inventarioObjetos.get(pocion);
+
+		if (cantidad > 1) {
+		    inventarioObjetos.put(pocion, cantidad - 1);
+		} else {
+		    inventarioObjetos.remove(pocion);
+		}
+		
 		System.out.println("ya no tienes esta pocion");
+		
 		//true porque se ha podido usar la pocion y ha salido todo bien
 		return true;
 

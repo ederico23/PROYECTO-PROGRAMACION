@@ -7,7 +7,7 @@ import modelo.Personaje;
 import modelo.PersonajeInteligencia;
 import modelo.PersonajeResistencia;
 import modelo.PersonajeVelocidad;
-import vista.CrearMenuPrueba;
+import vista.JuegoVistaConsola;
 
 public class MainPrueba {
 
@@ -20,7 +20,7 @@ public class MainPrueba {
 				+"=====================\n"
 				+jugador2);*/
 		// Crear vista
-		CrearMenuPrueba vista = new CrearMenuPrueba();
+		JuegoVistaConsola vista = new JuegoVistaConsola();
 		// Creamos el controller
 		CombateController juegoControlador = new CombateController(jugador1, jugador2,
 				vista);

@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * clase base para todas las pociones del juego
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author Mariano, Eder
  * @version 1.0 - 11/02/26
  */
-public class Pociones {
+public abstract class Pociones {
 	
 	/**
 	 * precio de la poción en monedas
@@ -55,5 +56,31 @@ public class Pociones {
 	public String toString() {
 		return "precio: " + precio + " monedas";
 	}
+	
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
+	/**
+	 * Metodo para determinar cuando una pocion es igual a otra
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pociones other = (Pociones) obj;
+		// Las pociones son iguales si su clase es igual, es decir, que PocionVida es igual a PocionVida
+		return this.getClass().equals(other.getClass());
+	}
+	
+	/**
+	 * Metodo para que las pociones se puedan usar ellas mismas, a determinar en cada tipo de pocion
+	 * @param personaje
+	 */
+	public abstract void usar (Personaje personaje);
 	
 }

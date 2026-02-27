@@ -48,13 +48,13 @@ public class PocionVida extends Pociones {
 	public void setCantidadVidaAñadida(Double cantidadVidaAñadida) {
 		this.cantidadVidaAñadida = cantidadVidaAñadida;
 	}
-	
+	@Override
 	/**
 	 * usa la poción de vida en un personaje
 	 * restaura puntos de vida del personaje
 	 * @param personaje el personaje que usa la poción
 	 */
-	public void usarPocionVida(Personaje personaje) {
+	public void usar(Personaje personaje) {
 		// obtiene la vida actual del personaje
 		Double vidaActual = personaje.getVida();
 		

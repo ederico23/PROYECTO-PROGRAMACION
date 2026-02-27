@@ -68,13 +68,13 @@ public class PocionDefensa extends Pociones {
 	public void setPorcentajeReduccionDaño(Double porcentajeReduccionDaño) {
 		this.porcentajeReduccionDaño = porcentajeReduccionDaño;
 	}
-
+	@Override
 	/**
 	 * usar la pocion de defensa en un personaje
 	 * aumenta la defensa
 	 * @param personaje = personaje que la usa
 	 */
-	public void usarPocionDefensa(Personaje personaje) {
+	public void usar(Personaje personaje) {
 		//obtiene el stat de defensa del persoanje
 		Double defensaActual = personaje.getStatDefensa();
 

@@ -8,6 +8,7 @@ import modelo.PersonajePersonalizado;
 import modelo.PersonajeResistencia;
 import modelo.PersonajeVelocidad;
 import utilidades.Leer;
+import vista.JuegoVista;
 
 /**
  * clase que controla la geston de crear jugadores al iniciar el juego
@@ -20,6 +21,8 @@ import utilidades.Leer;
  * @version 1.0
  */
 public class CreadorPersonajesController {
+	
+	private JuegoVista vista;
 
 	/**
 	 * puntos a repartir entre las stats de personalizacion
@@ -48,13 +51,17 @@ public class CreadorPersonajesController {
 	 * 
 	 * 
 	 */
+	public CreadorPersonajesController(JuegoVista vista) {
+		this.vista = vista;
+	}
 	public Jugador crearJugador() {
 
 		//mensaje de bienvenida + pedir nombre
-		String nombre = Leer.leerFrase("----BIENVENIDOS A H & V---- \n¿como quieres que se"
+		String nombre = Leer.leerFrase("----BIENVENIDOS A H & V---- \n"
+				+ "¿como quieres que se"
 				+ " llame tu personaje del juego?");
 
-		System.out.println("hola " + nombre + ", ahora que elige tu tipo de personaje");
+		vista.mostrarMensaje("hola " + nombre + ", ahora elige tu tipo de personaje");
 
 		//elegir el tipo de personaje
 		//creamos un array de Strings para poner el tipo de personaje
@@ -68,114 +75,110 @@ public class CreadorPersonajesController {
 
 		//bucle
 		do {
-			System.out.println("¿que tipo de personaje quieres?");
+			vista.mostrarMensaje("¿que tipo de personaje quieres?");
 
 			//recorremos el array
-			for (int i = 1; i < menuTipo.length; i++) {
-				System.out.println(i + ". " + menuTipo[i]);
+			for (int i = 0; i < menuTipo.length; i++) {
+				vista.mostrarMensaje(i + ". " + menuTipo[i]);
 			}
 
 			opcionTipo = Leer.leerEntero("elige una opcion: ");
-		} while (opcionTipo != 1 && opcionTipo != 2);
+		} while (opcionTipo != 1 && opcionTipo != 2 && opcionTipo != 0);
 
 		//crear personaje 
 		Personaje personaje;
 
 		//que opcion quiere el jugador
 		if (opcionTipo == 1) {
-
 			// personaje predeterminado
-			
 			personaje = elegirPersonajePredefinido();
+			Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
 
-			//personaje predeterminadp
-			personaje = elegirPersonajeCustom();
+			//crear el personaje y devolver el jugador
+			//nombre y personaje creados
 			//(crear jugadores hecho pero hay fallo en la tienda)
 
-		} else {
+			vista.mostrarMensaje("--PERSONAJE CREADO--");
+			return jugador;	
+
+
+		} else if (opcionTipo == 2){
 			//personaje custom
 			personaje = elegirPersonajeCustom();
+
+			Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
+
+			//crear el personaje y devolver el jugador
+			//nombre y personaje creados
+			//(crear jugadores hecho pero hay fallo en la tienda)
+
+			vista.mostrarMensaje("--PERSONAJE CREADO--");
+			return jugador;	
+			
+		} else {
+			vista.mostrarMensaje("Has salido del juego\n");
+			return null;
 		}
-
-
-	
-		Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
-
-		//crear el personaje y devolver el jugador
-		//nombre y personaje creados
-		//(crear jugadores hecho pero hay fallo en la tienda)
-
-		System.out.println("--PERSONAJE CREADO--");
-		return jugador;	
 	}
 
 	/**
 	 * metodo personaje predefinido 
 	 */
 	private Personaje elegirPersonajePredefinido() {
-		System.out.println("PERSONAJES PREDEFINIDOS");
+		vista.mostrarMensaje("PERSONAJES PREDEFINIDOS");
 
-		System.out.println("1. tipo fuerza");
-		System.out.println("2. tipo inteligencia");
-		System.out.println("3. tipo resistencia");
-		System.out.println("4. tipo velocidad");
+		vista.mostrarMensaje("1. tipo fuerza");
+		vista.mostrarMensaje("2. tipo inteligencia");
+		vista.mostrarMensaje("3. tipo resistencia");
+		vista.mostrarMensaje("4. tipo velocidad");
 
 		int opcion;
 
 		//bucle hasta que elija uno de los 4
 		do {
-
 			
 			opcion = Leer.leerEntero("elige tu personaje (1-4):");
-
-
-			opcion = Leer.leerEntero("elige tu personaje (1-4");
-			// (crear jugadores hecho pero hay fallo en la tienda)
 
 		} while (opcion < 1 || opcion > 4);
 
 		switch(opcion) {
 		case 1: 
 			//eleccion personaje fuerza
-			System.out.println("has elegido de tipo fuerza");
+			vista.mostrarMensaje("has elegido de tipo fuerza");
 			return new PersonajeFuerza();
 
 		case 2:
 			//eleccion personaje inteligencia
-			System.out.println("has elegido tipo inteligencia");
+			vista.mostrarMensaje("has elegido tipo inteligencia");
 			return new PersonajeInteligencia();
 
 		case 3:
 			//eleccion personaje resistencia
-			System.out.println("has elegido tipo resistencia");
+			vista.mostrarMensaje("has elegido tipo resistencia");
 			return new PersonajeResistencia();
 
 		case 4: 
 			//eleccion velocidad
-			System.out.println("has elegido tipo velocidad");
+			vista.mostrarMensaje("has elegido tipo velocidad");
 			return new PersonajeVelocidad();
 
 		default:
-
-		
-			System.out.println("opcion no valida, asignando fuerza por defecto");
+			vista.mostrarMensaje("opcion no valida, asignando fuerza por defecto");
 			return new PersonajeFuerza();
 		}
-
 	}
-	
 
 	/**
 	 * permite crear un personaje con caracterisiticas custom
 	 * 
 	 */
 	private Personaje elegirPersonajeCustom() {
-		System.out.println("--CREA TU PERSONAJE--");
+		vista.mostrarMensaje("--CREA TU PERSONAJE--");
 
 
-		System.out.println("tienes " + REPARTIR_PUNTOS + " puntos a repartir entre tus stats");
-		System.out.println("cada stat tiene que tener minimo " + MIN_PTS_STAT + " punto");
-		System.out.println("al crearlo custom tienes " + VIDA_CUSTOM + " HP");
+		vista.mostrarMensaje("tienes " + REPARTIR_PUNTOS + " puntos a repartir entre tus stats");
+		vista.mostrarMensaje("cada stat tiene que tener minimo " + MIN_PTS_STAT + " punto");
+		vista.mostrarMensaje("al crearlo personalizado tienes " + VIDA_CUSTOM + " HP");
 
 		// variable que cuenta los puntos que le quedan al usuario
 		int puntosRestantes = REPARTIR_PUNTOS;
@@ -210,12 +213,18 @@ public class CreadorPersonajesController {
 			int maxAsignar = puntosRestantes - (statsRestantes * MIN_PTS_STAT);
 
 			// guarda los pts que asigna a una stat
-			int puntosAsignados;
+			int puntosAsignados = 0;
 
 			do {
 				// muestra cuantos pts quedan
-				System.out.println("puntos restantes: " + puntosRestantes);
-				System.out.println("stats restantes: " + (statsRestantes + 1) + " incluyendo esta");
+				vista.mostrarMensaje("puntos restantes: " + puntosRestantes +"\n");
+				vista.mostrarMensaje("stats actuales: \n" 
+						+ nombresStats[0] + " -> " + puntosAsignados + " puntos\n"
+						+ nombresStats[1] + " -> " + puntosAsignados + " puntos\n"
+						+ nombresStats[2] + " -> " + puntosAsignados + " puntos\n"
+						+ nombresStats[3] + " -> " + puntosAsignados + " puntos\n"
+						+ nombresStats[4] + " -> " + puntosAsignados + " puntos\n"
+						+ nombresStats[5] + " -> " + puntosAsignados + " puntos\n");
 
 				// pedir los puntos para esta stat
 				puntosAsignados = Leer.leerEntero("puntos para " + nombresStats[i]
@@ -223,7 +232,7 @@ public class CreadorPersonajesController {
 
 				// si el valor no es valido se repite el bucle
 				if (puntosAsignados < MIN_PTS_STAT || puntosAsignados > maxAsignar) {
-					System.out.println("valor no valido, introduce un valor entre: "
+					vista.mostrarMensaje("valor no valido, introduce un valor entre: "
 							+ MIN_PTS_STAT + " y " + maxAsignar);
 				}
 
@@ -236,7 +245,7 @@ public class CreadorPersonajesController {
 			puntosRestantes -= puntosAsignados;
 
 			// confirmacion
-			System.out.println(nombresStats[i] + " -> " + puntosAsignados + " puntos");
+			vista.mostrarMensaje(nombresStats[i] + " -> " + puntosAsignados + " puntos");
 		}
 
 		// asignar variables desde el array
@@ -248,11 +257,11 @@ public class CreadorPersonajesController {
 		statResistencia  = valoresStats[5];
 
 		// resumen de las stats
-		System.out.println("----RESUMEN DE TU PERSONAJE----");
-		System.out.println("vida : " + VIDA_CUSTOM);
+		vista.mostrarMensaje("----RESUMEN DE TU PERSONAJE----");
+		vista.mostrarMensaje("vida : " + VIDA_CUSTOM);
 
 		for (int i = 0; i < nombresStats.length; i++) {
-			System.out.println(nombresStats[i] + ": " + valoresStats[i]);
+			vista.mostrarMensaje(nombresStats[i] + ": " + valoresStats[i]);
 		}
 
 		// creamos y devolvemos el personaje custom

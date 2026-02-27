@@ -75,13 +75,13 @@ public class PocionDaño extends Pociones {
 	public void setDuracion(Integer duracion) {
 		this.duracion = duracion;
 	}
-	
+	@Override
 	/**
 	 * usar la pocion de daño en un personaje
 	 * aumenta temportalmente el stat de ataque del pj
 	 * @param personaje = personaje que usa la pocion
 	 */
-	public void usarPocionDaño(Personaje personaje) {
+	public void usar(Personaje personaje) {
 		//obtener el stat de ataque actual del pj
 		Double ataqueActual = personaje.getStatAtaque();
 		
@@ -108,4 +108,5 @@ public class PocionDaño extends Pociones {
 					+ "daño añadido: +" + cantidadStatDañoAñadida 
 					+ "\n duracion: " + duracion + " turnos";
 	}
+
 }
