@@ -10,6 +10,7 @@ public class CombateController {
 	private Jugador jugador1;
 	private Jugador jugador2;
 	private JuegoVistaConsola vista;
+	private TiendaController tiendaControlador;
 	
 	/**
 	 * Constructor de clase
@@ -21,9 +22,13 @@ public class CombateController {
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;
 		this.vista = vista;
+		this.tiendaControlador = new TiendaController();
 	}
 	/**
 	 * Metodo para iniciar un combate
+	 */
+	/**
+	 * 
 	 */
 	public void iniciarCombate() {
 		
@@ -59,8 +64,10 @@ public class CombateController {
 			// Asignamos los personajes de los jugadores
 			Personaje atacante = jugadorAtacante.getPersonajeElegido();
 			Personaje defensor = jugadorDefensor.getPersonajeElegido();
+			
 			// Variable para cambiar el turno
-			boolean cambiarTurno = true;
+			boolean cambiarTurno = false;
+			
 			// Variable de seleccion, mostrando el menu
 			opcion = vista.mostrarMenu(menu, jugadorAtacante.getNombre());
 			
@@ -70,45 +77,60 @@ public class CombateController {
 						+"================\n");
 				cambiarTurno = false;
 				break;
+			
 			case 2: // Mostrar estadisticas de personaje de jugador 2
 				System.out.println(jugador2+"\n"
 						+"================\n");
 				cambiarTurno = false;
 				break;
+			
 			case 3: // Ataque
+				
 				// Variable de selecion de tipo de ataque
 				int subOpcionAtaque = vista.mostrarMenu(subMenuAtaques, jugadorAtacante.getNombre());
+				
 				switch (subOpcionAtaque) {
 				case 0: // Volver
-					cambiarTurno = false;
 					break;
+				
 				case 1: // Ataque fisico
 					double danyoFisico = atacante.ataqueFisico(defensor); 
 					defensor.recibirDanyo(danyoFisico);
 					System.out.println("Tu ataque fisico ha hecho "+danyoFisico+ " de daño a tu enemigo");
+					cambiarTurno = true;
 					break;
+				
 				case 2: // Ataque mágico
 					double danyoMagico = atacante.ataqueMagico(defensor);
 					defensor.recibirDanyo(danyoMagico);
 					System.out.println("Tu ataque magico ha hecho "+danyoMagico+ " de daño a tu enemigo");
+					cambiarTurno = true;
 					break;
+				
 				case 3: // Movimiento especial
 					System.out.println("Aun no implementado");
 					break;
 				}
 				break;
+			
 			case 4: // Usar objeto
-				int subOpcionObjetos = vista.mostrarMenu(subMenuObjetos, jugadorAtacante.getNombre());
-				jugadorAtacante.mostrarInventario();
-				switch (subOpcionObjetos) {
-				case 0: // Volver
-					cambiarTurno = false;
-					break;
-				case 1: // Pocion
-					
-				}
+//				int subOpcionObjetos = vista.mostrarMenu(subMenuObjetos, jugadorAtacante.getNombre());
+//				jugadorAtacante.mostrarInventario();
+//				switch (subOpcionObjetos) {
+//				case 0: // Volver
+//					cambiarTurno = false;
+//					break;
+//				case 1: // Pocion
+//					
+//				}
+//				break;
+				
+				//esto de vuelve true si se usa, sino false
+				tiendaControlador.abrirInventarioBatalla(jugadorAtacante);
 				break;
+				
 			}
+			
 			if (cambiarTurno == true) {
 				// Intercambiar turnos
 				Jugador temp = jugadorAtacante;
@@ -117,6 +139,7 @@ public class CombateController {
 			}
 			
 		} while ((p1.estaVivo() && p2.estaVivo()) && opcion != 0);
+		
 		if (opcion == 0) {
 			System.out.println("Has salido de la partida");
 		}

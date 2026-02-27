@@ -35,7 +35,7 @@ public class TiendaController {
 	 */
 	public void abrirTienda(Jugador jugador) {
 		System.out.println("**********  TIENDA  **********");
-		System.out.println("tienes " + jugador.getMonedas() + " monedas");
+		System.out.println(jugador.getNombre() + " tienes " + jugador.getMonedas() + " monedas");
 		
 		//guardar opcion
 		int opcion;
