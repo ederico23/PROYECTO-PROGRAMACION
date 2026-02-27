@@ -218,13 +218,6 @@ public class CreadorPersonajesController {
 			do {
 				// muestra cuantos pts quedan
 				vista.mostrarMensaje("puntos restantes: " + puntosRestantes +"\n");
-				vista.mostrarMensaje("stats actuales: \n" 
-						+ nombresStats[0] + " -> " + puntosAsignados + " puntos\n"
-						+ nombresStats[1] + " -> " + puntosAsignados + " puntos\n"
-						+ nombresStats[2] + " -> " + puntosAsignados + " puntos\n"
-						+ nombresStats[3] + " -> " + puntosAsignados + " puntos\n"
-						+ nombresStats[4] + " -> " + puntosAsignados + " puntos\n"
-						+ nombresStats[5] + " -> " + puntosAsignados + " puntos\n");
 
 				// pedir los puntos para esta stat
 				puntosAsignados = Leer.leerEntero("puntos para " + nombresStats[i]
@@ -240,12 +233,21 @@ public class CreadorPersonajesController {
 
 			// guardamos el valor en el array en la posicion i, casteado a double
 			valoresStats[i] = (double) puntosAsignados;
+			
+			// Imprimir valores asignados al array correspondientes con su estadistica
+			vista.mostrarMensaje("stats actuales: \n" 
+					+ nombresStats[0] + " -> " + valoresStats[0] + " puntos\n"
+					+ nombresStats[1] + " -> " + valoresStats[1] + " puntos\n"
+					+ nombresStats[2] + " -> " + valoresStats[2] + " puntos\n"
+					+ nombresStats[3] + " -> " + valoresStats[3] + " puntos\n"
+					+ nombresStats[4] + " -> " + valoresStats[4] + " puntos\n"
+					+ nombresStats[5] + " -> " + valoresStats[5] + " puntos\n");
 
 			// restamos los puntos usados del disponible
 			puntosRestantes -= puntosAsignados;
 
 			// confirmacion
-			vista.mostrarMensaje(nombresStats[i] + " -> " + puntosAsignados + " puntos");
+			// vista.mostrarMensaje(nombresStats[i] + " -> " + puntosAsignados + " puntos");
 		}
 
 		// asignar variables desde el array
