@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import excepciones.MonedasInsuficientesExcepcion;
+import excepciones.ObjetoInventarioInvalidoExcepcion;
+import excepciones.ValorFueraRangoExcepcion;
 /**
  * @author Mariano, Eder
  * @version 1.0
@@ -107,16 +111,16 @@ public class Jugador {
 	 * @param jugador = jugador que quiere comprarlo
 	 * @param indice = indice del objeto 
  	 * @return true = compra hecha, false = no se compró
+	 * @throws ValorFueraRangoExcepcion 
+	 * @throws MonedasInsuficientesExcepcion 
 	 */
-	public boolean comprar(Tienda tienda, int indice) {
-		//lo convertimos en el indice del ArrayList
-		int indiceReal = indice-1;
+	public boolean comprar(Tienda tienda, int indice) throws ValorFueraRangoExcepcion, MonedasInsuficientesExcepcion {
+		// Entero para elegir pocion
+		int indiceReal = indice - 1;
 		
 		//comprobamos que el indice exista (negativo o mayor al numero de objetos)
 		if (indiceReal < 0 || indiceReal >= tienda.getCatalogo().size()) {
-			System.out.println("opcion no valida"); // METER EXCEPCION
-			//devolvemos false porque no se puede comprar
-			return false;
+			throw new ValorFueraRangoExcepcion("La opcion elegida no existe");
 		}
 		
 		//tenemos que obetner el objeto que quiere comprar usando el indice real
@@ -124,10 +128,7 @@ public class Jugador {
 		
 		//comprobar que el usuario tiene monedas suficientes
 		if (this.getMonedas() < objetoAcomprar.getPrecio()) {
-			System.out.println("no tienes suficientes monedas, tienes " + this.getMonedas() +
-					" monedas, y necesitas " + objetoAcomprar.getPrecio()); // METER EXCEPCION
-			//false porque no tiene monedas suficiente y no se puede comprar
-			return false;
+			throw new MonedasInsuficientesExcepcion("No tienes suficientes monedas");
 		}
 		
 		//vale, deberá tener monedas si llegamos aqui, entonces descontamos monedas
@@ -152,8 +153,9 @@ public class Jugador {
 	 *
 	 * @param indice = numero de la pocion en el inventario
 	 * @return true = si se usó, false = si no se pudo usar
+	 * @throws ObjetoInventarioInvalidoExcepcion 
 	 */
-	public boolean usarObjeto(Integer indice) {
+	public boolean usarObjeto(Integer indice) throws ObjetoInventarioInvalidoExcepcion {
 		// Si no hay objetos el metodo no se ejecuta
 		if (inventarioObjetos.isEmpty()) {
 	        System.out.println("No tienes pociones");
@@ -167,8 +169,7 @@ public class Jugador {
 		
 		//comprobar si es valido el indice
 		if (indiceReal < 0 || indiceReal >= inventarioObjetos.size()) {
-			System.out.println("opcion no valida, elija un objeto del inventario"); // EXCEPCION
-			return false;
+			throw new ObjetoInventarioInvalidoExcepcion("Objeto inexistente");
 		}
 		
 		//obtenemos la pocion que se quiere usar 
@@ -184,9 +185,8 @@ public class Jugador {
 		    inventarioObjetos.put(pocion, cantidad - 1);
 		} else {
 		    inventarioObjetos.remove(pocion);
+			System.out.println("ya no tienes esta pocion");
 		}
-		
-		System.out.println("ya no tienes esta pocion");
 		
 		//true porque se ha podido usar la pocion y ha salido todo bien
 		return true;

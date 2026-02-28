@@ -41,8 +41,12 @@ public class MainPruebaCreador {
 			tiendaControlador.abrirTienda(jugador1);
 			tiendaControlador.abrirTienda(jugador2);
 			
-			System.out.println("-----INICIO COMBATE------");
-			combateControlador.iniciarCombate();
+			try {
+			    System.out.println("-----INICIO COMBATE------");
+			    combateControlador.iniciarCombate();
+			} catch (JugadorNuloExcepcion e) {
+			    vista.mostrarMensaje(e.getMessage());
+			}
 		}
 		
 	}

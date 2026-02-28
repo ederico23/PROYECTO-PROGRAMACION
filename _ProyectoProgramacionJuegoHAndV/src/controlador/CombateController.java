@@ -1,5 +1,8 @@
 package controlador;
 
+import excepciones.JugadorNuloExcepcion;
+import excepciones.ObjetoInventarioInvalidoExcepcion;
+import excepciones.ValorFueraRangoExcepcion;
 import modelo.Jugador;
 import modelo.Personaje;
 import utilidades.Leer;
@@ -25,12 +28,13 @@ public class CombateController {
 	}
 	/**
 	 * Metodo para iniciar un combate
+	 * @throws JugadorNuloExcepcion 
 	 */
-	/**
-	 * 
-	 */
-	public void iniciarCombate() {
+	public void iniciarCombate() throws JugadorNuloExcepcion {
 		
+		if (jugador1 == null || jugador2 == null) {
+			throw new JugadorNuloExcepcion("No se puede iniciar combate sin jugadores");
+		}
 		Personaje p1 = jugador1.getPersonajeElegido();
 		Personaje p2 = jugador2.getPersonajeElegido();
 		
@@ -53,10 +57,6 @@ public class CombateController {
 				"Mostrar estadisticas de "+jugador2.getNombre(), 
 				"Ataque", 
 				"Usar objeto"};
-		String[] subMenuAtaques = {"Volver",
-				"Ataque fisico", 
-				"Ataque magico", 
-				"Movimiento especial"};
 		
 		do {
 			// Asignamos los personajes de los jugadores
@@ -84,72 +84,30 @@ public class CombateController {
 			
 			case 3: // Ataque
 				
-				// Variable de selecion de tipo de ataque
-				int subOpcionAtaque = vista.mostrarMenu(subMenuAtaques, jugadorAtacante.getNombre());
-				
-				switch (subOpcionAtaque) {
-				case 0: // Volver
-					break;
-				
-				case 1: // Ataque fisico
-					double danyoFisico = atacante.ataqueFisico(defensor); 
-					defensor.recibirDanyo(danyoFisico);
-					System.out.println("Tu ataque fisico ha hecho "+danyoFisico+ " de daño a tu enemigo");
-					cambiarTurno = true;
-					break;
-				
-				case 2: // Ataque mágico
-					double danyoMagico = atacante.ataqueMagico(defensor);
-					defensor.recibirDanyo(danyoMagico);
-					System.out.println("Tu ataque magico ha hecho "+danyoMagico+ " de daño a tu enemigo");
-					cambiarTurno = true;
-					break;
-				
-				case 3: // Movimiento especial
-					System.out.println("Aun no implementado");
-					break;
-				}
+				cambiarTurno = ejecutarAtaque(atacante, defensor, jugadorAtacante.getNombre());
 				break;
 			
 			case 4: // Usar objeto
 				vista.mostrarInventario(jugadorAtacante);
-				int subOpcionObjetos = Leer.leerEntero("Elige la pocion que quieras usar.\n\n"
+				
+				int subOpcionObjetos = Leer.leerEntero("Elige la pocion que quieras usar.\n"
 						+ "Para volver escriba 0");
-				switch (subOpcionObjetos) {
-				case 0: // Volver
-					cambiarTurno = false;
-					break;
-				case 1: // Pocion
-					if (jugadorAtacante.usarObjeto(subOpcionObjetos)) {
-						cambiarTurno = true;
-						break;
-					}
-					cambiarTurno = false;
-					break;
-				case 2: // Pocion
-					if (jugadorAtacante.usarObjeto(subOpcionObjetos)) {
-						cambiarTurno = true;
-						break;
-					}
-					cambiarTurno = false;
-					break;
-				case 3: // Pocion
-					if (jugadorAtacante.usarObjeto(subOpcionObjetos)) {
-						cambiarTurno = true;
-						break;
-					}
+				if (subOpcionObjetos == 0) {
 					cambiarTurno = false;
 					break;
 				}
-			
-				
-				//esto de vuelve true si se usa, sino false
-				// tiendaControlador.abrirInventarioBatalla(jugadorAtacante);
-				//break;
-				
+				try {
+					if (jugadorAtacante.usarObjeto(subOpcionObjetos)){
+						cambiarTurno = true;
+					}
+				} catch (ObjetoInventarioInvalidoExcepcion e) {
+					vista.mostrarMensaje(e.getMessage());
+					cambiarTurno = false;
+				}
+				break;
 			}
 			
-			if (cambiarTurno == true) {
+			if (cambiarTurno) {
 				// Intercambiar turnos
 				Jugador temp = jugadorAtacante;
 				jugadorAtacante = jugadorDefensor;
@@ -161,11 +119,52 @@ public class CombateController {
 		if (opcion == 0) {
 			System.out.println("Has salido de la partida");
 		}
-		if (!p2.estaVivo()) {
-			System.out.println(jugador1.getNombre()+" gana");
-		} else {
+		if (!p1.estaVivo()) {
 			System.out.println(jugador2.getNombre()+" gana");
+		} else if (!p2.estaVivo()){
+			System.out.println(jugador1.getNombre()+" gana");
 		}
+	}
+	/**
+	 * 
+	 * @param atacante
+	 * @param defensor
+	 * @param nombreJugador
+	 * @return
+	 * @throws ValorFueraRangoExcepcion 
+	 */
+	private boolean ejecutarAtaque(Personaje atacante, Personaje defensor, String nombreJugador) {
+
+	    String[] subMenuAtaques = {
+	        "Volver",
+	        "Ataque fisico",
+	        "Ataque magico",
+	        "Movimiento especial"
+	    };
+
+	    int opcion = vista.mostrarMenu(subMenuAtaques, nombreJugador);
+	    
+	    switch (opcion) {
+
+	        case 1:
+	            double danyoFisico = atacante.ataqueFisico(defensor);
+	            defensor.recibirDanyo(danyoFisico);
+	            vista.mostrarMensaje("Ataque físico: " + danyoFisico + " de daño");
+	            return true;
+
+	        case 2:
+	            double danyoMagico = atacante.ataqueMagico(defensor);
+	            defensor.recibirDanyo(danyoMagico);
+	            vista.mostrarMensaje("Ataque mágico: " + danyoMagico + " de daño");
+	            return true;
+
+	        case 3:
+	            vista.mostrarMensaje("Movimiento especial aún no implementado");
+	            return false;
+
+	        default:
+	            return false;
+	    }
 	}
 	
 }
