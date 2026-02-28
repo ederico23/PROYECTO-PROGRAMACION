@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * clase base para todas las pociones del juego
- * representa un objeto que puede ser usado por el jugador durante la batalla
+ * Clase base para todas las pociones del juego
+ * Representa un objeto que puede ser usado por el jugador durante la batalla
+ * 
  * @author Mariano, Eder
  * @version 1.0 - 11/02/26
  */
 public abstract class Pociones {
 	
 	/**
-	 * precio de la poción en monedas
+	 * Precio de la poción en monedas
 	 */
 	protected Integer precio;
 	
 	/**
-	 * constructor de la clase Pociones
+	 * Constructor de la clase Pociones
+	 * 
 	 * @param precio = el precio de la poción en monedas
 	 */
 	public Pociones(Integer precio) {
@@ -25,15 +27,16 @@ public abstract class Pociones {
 	}
 	
 	/**
-	 * constructor sin parámetros
-	 * inicializa el precio en 0
+	 * Constructor sin parámetros
+	 * Inicializa el precio en 0
 	 */
 	public Pociones() {
 		this.precio = 0;
 	}
 	
 	/**
-	 * obtiene el precio de la poción
+	 * Obtiene el precio de la poción
+	 * 
 	 * @return el precio de la poción
 	 */
 	public Integer getPrecio() {
@@ -41,7 +44,7 @@ public abstract class Pociones {
 	}
 	
 	/**
-	 * establece el precio de la poción
+	 * Establece el precio de la poción
 	 * @param precio el nuevo precio de la poción
 	 */
 	public void setPrecio(Integer precio) {
@@ -50,17 +53,18 @@ public abstract class Pociones {
 	
 	@Override
 	/**
-	 * devuelve una representación en texto de la poción
+	 * Devuelve una representación en texto de la poción
 	 * @return string con el precio de la poción
 	 */
 	public String toString() {
-		return "precio: " + precio + " monedas";
+		return "Precio: " + precio + " monedas";
 	}
 	
 	@Override
 	public int hashCode() {
 		return getClass().hashCode();
 	}
+	
 	/**
 	 * Metodo para determinar cuando una pocion es igual a otra
 	 */

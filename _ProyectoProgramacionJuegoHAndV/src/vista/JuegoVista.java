@@ -1,5 +1,7 @@
 package vista;
-
+/**
+ * Clase para imprimir mensajes, mostrar menu y mostrar el inventario
+ */
 import modelo.Jugador;
 
 public interface JuegoVista {

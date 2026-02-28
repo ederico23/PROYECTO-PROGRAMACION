@@ -4,48 +4,65 @@ import java.util.Objects;
 
 /**
  * Clase principal de creacion de personajes, conteniendo sus estadisticas
+ * 
  * @author Mariano, Eder
  * @version 1.0 - 02/09/2026
  */
 public abstract class Personaje implements Ataque{
+		
 	/**
 	 * Contador para el identificador
 	 */
 	private static int contadorId = 0;
+	
 	/**
 	 * Identificador de personaje
 	 */
 	private int idPersonaje;
+	
 	/**
-	 * vida del personaje
+	 * Vida del personaje
 	 */
 	protected double vida;
+	
 	/**
 	 * Estadistica de ataque del personaje
 	 */
 	protected double statAtaque;
+	
 	/**
 	 * Estadistica de defensa del personaje
 	 */
 	protected double statDefensa;
+	
 	/**
 	 * Estadistica de inteligencia del personaje
 	 */
 	protected double statInteligencia;
+	
 	/**
 	 * Estadistica de fuerza del personaje
 	 */
 	protected double statFuerza;
+	
 	/**
 	 * Estadistica de velocidad del personaje
 	 */
 	protected double statVelocidad;
+	
 	/**
 	 * Estadistica de resistencia del personaje
 	 */
 	protected double statResistencia;
+	
+	/**
+	 * Estadistica de vida maxima del personaje
+	 */
+	protected double vidaMax;
+	
 	/**
 	 * Constructor de clase
+	 * 
 	 * @param vida
 	 * @param statAtaque
 	 * @param statInteligencia
@@ -63,6 +80,7 @@ public abstract class Personaje implements Ataque{
 		this.statVelocidad = statVelocidad;
 		this.statResistencia = statResistencia;
 		idPersonaje = contadorId++;
+		this.vidaMax = vida; 
 	}
 	
 	/**
@@ -169,6 +187,13 @@ public abstract class Personaje implements Ataque{
 	public int getIdPersonaje() {
 		return idPersonaje;
 	}
+	
+	/**
+	 * @return the vidaMax
+	 */
+	public double getVidaMax() {
+		return vidaMax;
+	}
 
 	@Override
 	/**
@@ -184,10 +209,12 @@ public abstract class Personaje implements Ataque{
 				+ "Velocidad = " +statVelocidad+ "\n"
 				+ "Resistencia = "+ statResistencia;
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(idPersonaje);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -199,6 +226,7 @@ public abstract class Personaje implements Ataque{
 		Personaje other = (Personaje) obj;
 		return Objects.equals(idPersonaje, other.idPersonaje);
 	}
+	
 	/**
 	 * Metodo para reducir la vida de personaje cuando recibe danyo
 	 * @param danyo recibido
@@ -211,6 +239,7 @@ public abstract class Personaje implements Ataque{
 			this.vida = 0;
 		}
 	}
+	
 	/**
 	 * Metodo para determinar si un personaje esta vivo o no
 	 * @return booleano con true si esta vivo y false si no lo esta

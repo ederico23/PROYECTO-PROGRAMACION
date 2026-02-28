@@ -1,5 +1,8 @@
 package modelo;
 
+/**
+ * Clase para calcular el daño
+ */
 public class SistemaAfinidad {
 	public static double calcular(Personaje a, Personaje d) {
 		

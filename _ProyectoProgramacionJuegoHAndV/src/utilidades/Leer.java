@@ -7,7 +7,9 @@ import java.util.Scanner;
  * @author Mariano
  * @version 1.1 - 26/01/2026
  */
+
 public class Leer {
+	
 	/**
 	 * Atributo de Scanner para inicializar
 	 */
@@ -34,6 +36,7 @@ public class Leer {
 		} while (!controlValor);
 		return "";
 	}
+	
 	/**
 	 * Metodo estatico para introducir un valor entero por teclado 
 	 * @param mensaje a introducir para establecer instrucciones al usuario
@@ -60,6 +63,7 @@ public class Leer {
 		} while (!controlValor);
 		return 0;
 	}
+	
 	/**
 	 * Metodo estatico para introducir un valor decimal por teclado 
 	 * @param mensaje a introducir para establecer instrucciones al usuario
@@ -86,6 +90,7 @@ public class Leer {
 		} while (!controlValor);
 		return 0.0;
 	}
+	
 	/**
 	 * Metodo estatico para introducir un valor booleano por teclado 
 	 * @param mensaje a introducir para establecer instrucciones al usuario
@@ -108,6 +113,7 @@ public class Leer {
 		} while (!controlValor);
 		return false;
 	}
+	
 	/**
 	 * Metodo para cerrar el escaner
 	 */

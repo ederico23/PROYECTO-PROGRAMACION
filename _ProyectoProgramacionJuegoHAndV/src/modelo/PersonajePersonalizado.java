@@ -1,7 +1,7 @@
 package modelo;
 
 /**
- * clase que representa un poersonaje personalizado
+ * Clase que representa un poersonaje personalizado
  * 
  * @author Maraiano, Eder
  * @version 1.0
@@ -9,8 +9,7 @@ package modelo;
 public class PersonajePersonalizado extends Personaje{
 
 	/**
-     * constructor que recibe todas las stats elegidas por el jugador
-     * llama al constructor de la clase padre
+     * Constructor que recibe todas las stats elegidas por el jugador
      *
      * @param vida  = puntos de vida del personaje
      * @param statAtaque  = estadística de ataque
@@ -23,41 +22,40 @@ public class PersonajePersonalizado extends Personaje{
     public PersonajePersonalizado(double vida, double statAtaque, double statDefensa,
             double statInteligencia, double statFuerza,
             double statVelocidad, double statResistencia) {
-
-        // super() llama al constructor de Personaje 
-        //le pasamos todos los parametros
+    	
         super(vida, statAtaque, statDefensa, statInteligencia,
               statFuerza, statVelocidad, statResistencia);
     }
 	
     /**
-     * calculo el ataqye fisico 
+     * Calcular el ataque fisico 
      * 
      * @param personajeObjetivo
      * @return danyo  = cantidad de daño que ha jecho
      */
     @Override
     public double ataqueFisico(Personaje personajeObjetivo) {
-    	//calcular el daño
+
     	double danyoBase = (statAtaque + statFuerza) - personajeObjetivo.getStatDefensa();
     	
-    	//el daño no puede ser meno r que 1
+    	//El daño no puede ser menor que 1
     	double danyo = Math.max(1, danyoBase) * SistemaAfinidad.calcular(this, personajeObjetivo);
     	
     	return danyo;
     }
 	
     /**
-     * calcutlar el ataque magico
+     * Calcular el ataque magico
      * 
      * @param personajeObjetivo = personaje que recibe el daño
      * @return danyo = cantidad de daño que ha hecho
      */
     @Override
     public double ataqueMagico(Personaje personajeObjetivo) {
-    	//dañño bae
+   
     	double danyoBase = (statAtaque + statInteligencia) - personajeObjetivo.getStatDefensa();
     	
+    	//El daño no puede ser menor que 1
     	double danyo = Math.max(1, danyoBase) * SistemaAfinidad.calcular(this, personajeObjetivo);
     	
     	return danyo;
@@ -65,7 +63,7 @@ public class PersonajePersonalizado extends Personaje{
     }
     
     /**
-     * movimiento especial
+     * Movimiento especial
      * 
      * @return personajeObjetivo = personahje que recibe daño
      */
@@ -76,14 +74,13 @@ public class PersonajePersonalizado extends Personaje{
     }
     
     /**
-     * devuelve los datos de personaje custom
+     * Devuelve los datos de personaje custom
      * 
      * @return String con tipo y stats
      */
     @Override 
     public String toString() {
-    	//que imprima la clase padre
-    	return "tipo: personalizado\n" + super.toString();
+    	return "Tipo: personalizado\n" + super.toString();
     }
     
     

@@ -1,32 +1,34 @@
 package modelo;
 
 /**
- * clase que representa una poción de vida
- * esta poción restaura puntos de vida del personaje
- * hereda de la clase Pociones
+ * Clase que representa una poción de vida
+ * Esta poción restaura puntos de vida del personaje
+ * Hereda de la clase Pociones
+ * 
  * @author Mariano, Eder
  * @version 1.0 - 11/02/26
  */
 public class PocionVida extends Pociones {
 	
 	/**
-	 * cantidad de vida que se restaura al personaje
+	 * Cantidad de vida que se restaura al personaje
 	 */
 	private Double cantidadVidaAñadida;
 	
 	/**
-	 * constructor completo de la clase PocionVida
+	 * Constructor completo de la clase PocionVida
+	 * 
 	 * @param precio el precio de la poción en monedas
 	 * @param cantidadVidaAñadida La cantidad de vida que restaura la poción
 	 */
 	public PocionVida(Integer precio, Double cantidadVidaAñadida) {
-		super(precio); // llama al constructor de la clase padre(Pociones)
+		super(precio); 
 		this.cantidadVidaAñadida = cantidadVidaAñadida;
 	}
 	
 	/**
-	 * constructor con valores por defecto
-	 * crea una poción de vida básica
+	 * Constructor con valores por defecto
+	 * Crea una poción de vida básica
 	 */
 	public PocionVida() {
 		super(20); // precio por defecto: 20 monedas
@@ -34,7 +36,7 @@ public class PocionVida extends Pociones {
 	}
 	
 	/**
-	 * obtiene la cantidad de vida que restaura la poción
+	 * Obtiene la cantidad de vida que restaura la poción
 	 * @return la cantidad de vida añadida
 	 */
 	public Double getCantidadVidaAñadida() {
@@ -42,31 +44,38 @@ public class PocionVida extends Pociones {
 	}
 	
 	/**
-	 * establece la cantidad de vida que restaura la poción
+	 * Establece la cantidad de vida que restaura la poción
 	 * @param cantidadVidaAñadida la nueva cantidad de vida
 	 */
 	public void setCantidadVidaAñadida(Double cantidadVidaAñadida) {
 		this.cantidadVidaAñadida = cantidadVidaAñadida;
 	}
+	
 	@Override
 	/**
-	 * usa la poción de vida en un personaje
-	 * restaura puntos de vida del personaje
+	 * Usa la poción de vida en un personaje
+	 * Restaura puntos de vida del personaje
+	 * 
 	 * @param personaje el personaje que usa la poción
 	 */
 	public void usar(Personaje personaje) {
-		// obtiene la vida actual del personaje
+		//Obtiene la vida actual del personaje
 		Double vidaActual = personaje.getVida();
 		
-		// aumenta la vida sumando la cantidad de la poción
+		//Aumenta la vida sumando la cantidad de la poción
 		Double nuevaVida = vidaActual + this.cantidadVidaAñadida;
 		
-		// establece el nuevo valor de vida en el personaje
-		personaje.setVida(nuevaVida);
+		if (nuevaVida > personaje.getVidaMax()) { //Si la vida despues de la pocion es mayor que el maximo de vida del personaje, no cura
+			personaje.setVida(personaje.getVidaMax());
+			System.out.println("Vida al maximo \nVida actual: " + personaje.getVida() + "/" + personaje.getVidaMax());
+		} else {
+			personaje.setVida(nuevaVida);
+			System.out.println("Pocion de vida usada " + this.cantidadVidaAñadida + "HP\nVida actual: " + personaje.getVida() + "/" + personaje.getVidaMax());
+		}
 		
-		// mensaje informativo
-		System.out.println("poción de vida usada!!! vida restaurada: +" + 
-						   this.cantidadVidaAñadida + " de vida");
+		//Establece el nuevo valor de vida en el personaje
+		personaje.setVida(nuevaVida);
+		 
 	}
 	
 	@Override
@@ -76,7 +85,7 @@ public class PocionVida extends Pociones {
 	 */
 	public String toString() {
 		return "Poción de Vida:\n" +
-			   "  Precio: " + precio + " monedas\n" +
-			   "  Vida restaurada: +" + cantidadVidaAñadida + " HP";
+			   "Precio: " + precio + " monedas\n" +
+			   "Vida restaurada: +" + cantidadVidaAñadida + " HP";
 	}
 }	
