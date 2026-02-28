@@ -1,6 +1,9 @@
 package vista;
 
+import java.util.Map;
+
 import modelo.Jugador;
+import modelo.Pociones;
 import utilidades.Leer;
 /**
  * Clase para hacer vista de menu de prueba
@@ -40,6 +43,24 @@ public class JuegoVistaConsola implements JuegoVista{
 		
 		return opcion;
 	}//fin-mostrarMenu
+	/**
+	 * muestra los objetos que tiene el jugador
+	 */
+	public void mostrarInventario(Jugador jugador) {
+		System.out.println("---- INVENTARIO DE " + jugador.getNombre() + " ----");
+	
+		//comprobar si el inventario está vacio
+		if (jugador.getInventarioObjetos().isEmpty()) {
+			System.out.println("no tienes pociones en el inventario");
+		} else {
+			int i = 1;
+			for (Map.Entry<Pociones, Integer> entry : jugador.getInventarioObjetos().entrySet()) {
+				//lo mismo que en la tienda, (i+1) para que empiece en 1
+				System.out.println(i + ". " + entry.getKey() + " x" + entry.getValue());
+				i++;
+			}
+		}
+	}
 	
 	
 	

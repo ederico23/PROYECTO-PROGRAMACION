@@ -3,6 +3,7 @@ package controlador;
 import modelo.Jugador;
 import modelo.Tienda;
 import utilidades.Leer;
+import vista.JuegoVista;
 
 /**
  * controlador d ela tienda
@@ -12,7 +13,7 @@ import utilidades.Leer;
  * @version 1.0
  */
 public class TiendaController {
-
+	private JuegoVista vista;
 	/**
 	 * atributo de tienda para poder usarla 
 	 */
@@ -21,8 +22,8 @@ public class TiendaController {
 	 * contructor
 	 * @param tienda
 	 */
-	public TiendaController() {
-		super();
+	public TiendaController(JuegoVista vista) {
+		this.vista = vista;
 		this.tienda = new Tienda();
 	}
 
@@ -54,7 +55,7 @@ public class TiendaController {
 				//indice es valido (es decir, que ha introducido una opcioon valida)
 				//le psamos jugador y opcion
 				jugador.comprar(tienda, opcion);
-				jugador.mostrarInventario();
+				vista.mostrarInventario(jugador);
 			}	
 		} while (opcion != 0 && jugador.getMonedas() > 0);
 		
@@ -63,7 +64,7 @@ public class TiendaController {
 				"\nte quedan " + jugador.getMonedas() + " monedas" + 
 				"\ny este es tu inventario actualizado ");
 		//esto no va dentro del syso porque el metodo ya imprime por su propia cuenta
-		jugador.mostrarInventario();
+		vista.mostrarInventario(jugador);
 	}
 	
 	/**
@@ -82,7 +83,7 @@ public class TiendaController {
 		}
 		
 		//mostrar el inventairo
-		jugador.mostrarInventario();
+		vista.mostrarInventario(jugador);
 		
 		//pedir que pocion quiere usar, y si se arrepiente o se confunde, puede salir dando al 0 
 		int opcion = Leer.leerEntero("¿que pocion quieres usar? pulsa 0 para cancelar");

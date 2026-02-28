@@ -2,6 +2,7 @@ package controlador;
 
 import modelo.Jugador;
 import modelo.Personaje;
+import utilidades.Leer;
 import vista.JuegoVistaConsola;
 /**
  * Clase que controla la logica de la batalla
@@ -10,7 +11,6 @@ public class CombateController {
 	private Jugador jugador1;
 	private Jugador jugador2;
 	private JuegoVistaConsola vista;
-	private TiendaController tiendaControlador;
 	
 	/**
 	 * Constructor de clase
@@ -22,7 +22,6 @@ public class CombateController {
 		this.jugador1 = jugador1;
 		this.jugador2 = jugador2;
 		this.vista = vista;
-		this.tiendaControlador = new TiendaController();
 	}
 	/**
 	 * Metodo para iniciar un combate
@@ -58,7 +57,6 @@ public class CombateController {
 				"Ataque fisico", 
 				"Ataque magico", 
 				"Movimiento especial"};
-		String[] subMenuObjetos = {"No implementado"};
 		
 		do {
 			// Asignamos los personajes de los jugadores
@@ -114,20 +112,40 @@ public class CombateController {
 				break;
 			
 			case 4: // Usar objeto
-//				int subOpcionObjetos = vista.mostrarMenu(subMenuObjetos, jugadorAtacante.getNombre());
-//				jugadorAtacante.mostrarInventario();
-//				switch (subOpcionObjetos) {
-//				case 0: // Volver
-//					cambiarTurno = false;
-//					break;
-//				case 1: // Pocion
-//					
-//				}
-//				break;
+				vista.mostrarInventario(jugadorAtacante);
+				int subOpcionObjetos = Leer.leerEntero("Elige la pocion que quieras usar.\n\n"
+						+ "Para volver escriba 0");
+				switch (subOpcionObjetos) {
+				case 0: // Volver
+					cambiarTurno = false;
+					break;
+				case 1: // Pocion
+					if (jugadorAtacante.usarObjeto(subOpcionObjetos)) {
+						cambiarTurno = true;
+						break;
+					}
+					cambiarTurno = false;
+					break;
+				case 2: // Pocion
+					if (jugadorAtacante.usarObjeto(subOpcionObjetos)) {
+						cambiarTurno = true;
+						break;
+					}
+					cambiarTurno = false;
+					break;
+				case 3: // Pocion
+					if (jugadorAtacante.usarObjeto(subOpcionObjetos)) {
+						cambiarTurno = true;
+						break;
+					}
+					cambiarTurno = false;
+					break;
+				}
+			
 				
 				//esto de vuelve true si se usa, sino false
-				tiendaControlador.abrirInventarioBatalla(jugadorAtacante);
-				break;
+				// tiendaControlador.abrirInventarioBatalla(jugadorAtacante);
+				//break;
 				
 			}
 			

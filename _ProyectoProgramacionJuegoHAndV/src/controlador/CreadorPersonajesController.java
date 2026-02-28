@@ -1,4 +1,6 @@
 package controlador;
+import excepciones.JugadorNuloExcepcion;
+import excepciones.ValorFueraRangoExcepcion;
 //crear jugadores hecho pero hay fallo en la tienda)
 import modelo.Jugador;
 import modelo.Personaje;
@@ -54,7 +56,7 @@ public class CreadorPersonajesController {
 	public CreadorPersonajesController(JuegoVista vista) {
 		this.vista = vista;
 	}
-	public Jugador crearJugador() {
+	public Jugador crearJugador() throws JugadorNuloExcepcion {
 
 		//mensaje de bienvenida + pedir nombre
 		String nombre = Leer.leerFrase("----BIENVENIDOS A H & V---- \n"
@@ -71,19 +73,29 @@ public class CreadorPersonajesController {
 				"crear personaje" //2
 		};
 
-		int opcionTipo;
-
+		int opcionTipo = 0;
+		
+		boolean valorCorrecto = false;
+		
 		//bucle
-		do {
+		while (!valorCorrecto) {
 			vista.mostrarMensaje("¿que tipo de personaje quieres?");
-
 			//recorremos el array
 			for (int i = 0; i < menuTipo.length; i++) {
 				vista.mostrarMensaje(i + ". " + menuTipo[i]);
 			}
-
-			opcionTipo = Leer.leerEntero("elige una opcion: ");
-		} while (opcionTipo != 1 && opcionTipo != 2 && opcionTipo != 0);
+			try {
+				opcionTipo = Leer.leerEntero("elige una opcion: ");
+				if (opcionTipo > menuTipo.length - 1 || opcionTipo < 0) {
+					throw new ValorFueraRangoExcepcion("La opcion tiene que estar entre "
+							+(menuTipo.length - 1)+" y 0");
+				}
+				valorCorrecto = true;
+			} catch (ValorFueraRangoExcepcion e) {
+				vista.mostrarMensaje(e.getMessage());
+			}
+			
+		} 
 
 		//crear personaje 
 		Personaje personaje;
@@ -103,8 +115,14 @@ public class CreadorPersonajesController {
 
 
 		} else if (opcionTipo == 2){
-			//personaje custom
-			personaje = elegirPersonajeCustom();
+			
+			try {
+				//personaje custom
+				personaje = elegirPersonajeCustom();
+			} catch (ValorFueraRangoExcepcion e) {
+				vista.mostrarMensaje(e.getMessage());
+				return null;
+			}
 
 			Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
 
@@ -116,11 +134,10 @@ public class CreadorPersonajesController {
 			return jugador;	
 			
 		} else {
-			vista.mostrarMensaje("Has salido del juego\n");
-			return null;
-		}
+			vista.mostrarMensaje("Has salido del juego");
+			throw new JugadorNuloExcepcion("El jugador ha cancelado la creacion");
+		} 
 	}
-
 	/**
 	 * metodo personaje predefinido 
 	 */
@@ -170,9 +187,10 @@ public class CreadorPersonajesController {
 
 	/**
 	 * permite crear un personaje con caracterisiticas custom
+	 * @throws ValorFueraRangoExcepcion 
 	 * 
 	 */
-	private Personaje elegirPersonajeCustom() {
+	private Personaje elegirPersonajeCustom() throws ValorFueraRangoExcepcion {
 		vista.mostrarMensaje("--CREA TU PERSONAJE--");
 
 
@@ -214,22 +232,30 @@ public class CreadorPersonajesController {
 
 			// guarda los pts que asigna a una stat
 			int puntosAsignados = 0;
+			
+			boolean valorCorrecto = false;
 
-			do {
+			while (!valorCorrecto) {
 				// muestra cuantos pts quedan
 				vista.mostrarMensaje("puntos restantes: " + puntosRestantes +"\n");
-
-				// pedir los puntos para esta stat
-				puntosAsignados = Leer.leerEntero("puntos para " + nombresStats[i]
-						+ " (min: " + MIN_PTS_STAT + ", max: " + maxAsignar + "):");
-
-				// si el valor no es valido se repite el bucle
-				if (puntosAsignados < MIN_PTS_STAT || puntosAsignados > maxAsignar) {
-					vista.mostrarMensaje("valor no valido, introduce un valor entre: "
-							+ MIN_PTS_STAT + " y " + maxAsignar);
+				
+				try {
+					// pedir los puntos para esta stat
+					puntosAsignados = Leer.leerEntero("puntos para " + nombresStats[i]
+							+ " (min: " + MIN_PTS_STAT + ", max: " + maxAsignar + "):");
+	
+					// si el valor no es valido se repite el bucle
+					if (puntosAsignados < MIN_PTS_STAT || puntosAsignados > maxAsignar) {
+						throw new ValorFueraRangoExcepcion(
+						        "Los puntos deben estar entre " + MIN_PTS_STAT + " y " + maxAsignar
+						    );
+					}
+					valorCorrecto = true;
+				} catch (ValorFueraRangoExcepcion e) {
+					vista.mostrarMensaje(e.getMessage());
 				}
-
-			} while (puntosAsignados < MIN_PTS_STAT || puntosAsignados > maxAsignar);
+					
+			} 
 
 			// guardamos el valor en el array en la posicion i, casteado a double
 			valoresStats[i] = (double) puntosAsignados;

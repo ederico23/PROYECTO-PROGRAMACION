@@ -3,6 +3,7 @@ package aplicacion;
 import controlador.CombateController;
 import controlador.CreadorPersonajesController;
 import controlador.TiendaController;
+import excepciones.JugadorNuloExcepcion;
 import modelo.Jugador;
 import vista.JuegoVistaConsola;
 import controlador.CreadorPersonajesController;
@@ -12,25 +13,34 @@ public class MainPruebaCreador {
 	public static void main(String[] args) {
 		
 		JuegoVistaConsola vista = new JuegoVistaConsola();
-		TiendaController tiendaControlador = new TiendaController();
+		
+		TiendaController tiendaControlador = new TiendaController(vista);
 		
 		//creamos ell objeto que gestiona la creacion de jugadores
 		CreadorPersonajesController creador = new CreadorPersonajesController(vista);
 		
-		vista.mostrarMensaje("---------JUGADOR 1----------");
-		Jugador jugador1 = creador.crearJugador();
+		Jugador jugador1 = null;
+		Jugador jugador2 = null;
 		
-		System.out.println("---------JUGADOR 2----------");
-		Jugador jugador2 = creador.crearJugador();
-		
-		//creamos vista y controladores
-		CombateController combateControlador = new CombateController(jugador1, jugador2, vista);
+		try {
+			vista.mostrarMensaje("---------JUGADOR 1----------");
+			jugador1 = creador.crearJugador();
+			vista.mostrarMensaje("---------JUGADOR 2----------");
+			jugador2 = creador.crearJugador();
+
+		} catch (JugadorNuloExcepcion e) {
+			vista.mostrarMensaje(e.getMessage());
+		}
 		
 		//pruea
 		// Colocar condicion de que tenga que existir jugador
 		if (jugador1 != null && jugador2 != null) {
+			//creamos controlador de combate
+			CombateController combateControlador = new CombateController(jugador1, jugador2, vista);
+			
 			tiendaControlador.abrirTienda(jugador1);
 			tiendaControlador.abrirTienda(jugador2);
+			
 			System.out.println("-----INICIO COMBATE------");
 			combateControlador.iniciarCombate();
 		}

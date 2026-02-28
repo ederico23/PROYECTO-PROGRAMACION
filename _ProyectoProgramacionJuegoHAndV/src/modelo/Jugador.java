@@ -102,24 +102,6 @@ public class Jugador {
 				+ "Inventario = " + inventarioObjetos.size();
 	}
 	/**
-	 * muestra los objetos que tiene el jugador
-	 */
-	public void mostrarInventario() {
-		System.out.println("---- INVENTARIO DE " + nombre + " ----");
-	
-		//comprobar si el inventario está vacio
-		if (inventarioObjetos.isEmpty()) {
-			System.out.println("no tienes pociones en el inventario");
-		} else {
-			int i = 1;
-			for (Map.Entry<Pociones, Integer> entry : inventarioObjetos.entrySet()) {
-				//lo mismo que en la tienda, (i+1) para que empiece en 1
-				System.out.println(i + ". " + entry.getKey() + " x" + entry.getValue());
-				i++;
-			}
-		}
-	}
-	/**
 	 * gestiona la compra de un objeto, y comprueba si hay suficientes monedas,
 	 * que compre el objeto y le reste lo que cuesta.
 	 * @param jugador = jugador que quiere comprarlo
@@ -194,32 +176,6 @@ public class Jugador {
 		
 		// Usar pocion, la pocion ya sabe cual es y como tiene que usarse
 		pocion.usar(personajeElegido);
-		
-//		//instanceof para saber que tipo de pocion es
-//		if (pocion instanceof PocionVida) {
-//			//si no se pone esta linea da error
-//			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
-//			PocionVida pocionVida = (PocionVida) pocion;
-//			//usamos la pocion sobre el jugador
-//			pocionVida.usarPocionVida(personajeElegido);
-//			
-//		} else if (pocion instanceof PocionDaño) {
-//			//si no se pone esta linea da error
-//			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
-//			PocionDaño pocionDaño = (PocionDaño) pocion;
-//			//usamos la pocion sobre el jugador
-//			pocionDaño.usarPocionDaño(personajeElegido);
-//		} else if (pocion instanceof PocionDefensa) {
-//			//si no se pone esta linea da error
-//			//con esto pasamos Pociones a PocionVida para utilizar usarPocionVida()
-//			PocionDefensa pocionDefensa = (PocionDefensa) pocion;
-//			//usamos la pocion sobre el jugador
-//			pocionDefensa.usarPocionDefensa(personajeElegido);
-//		} else {
-//			System.out.println("elige una de esas opciones");
-//			//false porque no se pudo comprar
-//			return false;
-//		}
 		
 		// Reducir cantidad
 		int cantidad = inventarioObjetos.get(pocion);
