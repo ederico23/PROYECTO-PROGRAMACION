@@ -88,7 +88,7 @@ public class CreadorPersonajesController {
 				vista.mostrarMensaje(i + ". " + menuTipo[i]);
 			}
 			try {
-				opcionTipo = Leer.leerEntero("elige una opcion: ");
+				opcionTipo = Leer.leerEntero("Elige una opcion: ");
 				if (opcionTipo > menuTipo.length - 1 || opcionTipo < 0) {
 					throw new ValorFueraRangoExcepcion("La opcion tiene que estar entre "
 							+(menuTipo.length - 1)+" y 0");
