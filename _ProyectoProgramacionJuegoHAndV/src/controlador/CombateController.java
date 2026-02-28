@@ -7,6 +7,7 @@ import modelo.Jugador;
 import modelo.Personaje;
 import utilidades.Leer;
 import vista.JuegoVistaConsola;
+
 /**
  * Clase que controla la logica de la batalla
  */
@@ -26,6 +27,7 @@ public class CombateController {
 		this.jugador2 = jugador2;
 		this.vista = vista;
 	}
+	
 	/**
 	 * Metodo para iniciar un combate
 	 * @throws JugadorNuloExcepcion 
@@ -48,8 +50,10 @@ public class CombateController {
 			jugadorAtacante = jugador2;
 			jugadorDefensor = jugador1;
 		}
+		
 		// Variable para eleccion
 		int opcion;
+		
 		// Cadenas de texto a imprimir 
 		String[] menu = {
 				"Salir",
@@ -126,6 +130,7 @@ public class CombateController {
 		}
 	}
 	/**
+	 * Ejecutar el ataque
 	 * 
 	 * @param atacante
 	 * @param defensor

@@ -1,6 +1,5 @@
 package modelo;
 
-import java.util.Objects;
 
 /**
  * Clase principal de creacion de personajes, conteniendo sus estadisticas
@@ -8,6 +7,9 @@ import java.util.Objects;
  * @author Mariano, Eder
  * @version 1.0 - 02/09/2026
  */
+
+import java.util.Objects;
+
 public abstract class Personaje implements Ataque{
 		
 	/**
@@ -229,6 +231,7 @@ public abstract class Personaje implements Ataque{
 	
 	/**
 	 * Metodo para reducir la vida de personaje cuando recibe danyo
+	 * 
 	 * @param danyo recibido
 	 */
 	public void recibirDanyo(double danyo) {
@@ -242,11 +245,13 @@ public abstract class Personaje implements Ataque{
 	
 	/**
 	 * Metodo para determinar si un personaje esta vivo o no
+	 * 
 	 * @return booleano con true si esta vivo y false si no lo esta
 	 */
 	public boolean estaVivo() {
 		return this.vida > 0;
 	}
+	
 	// Declaramos metodos de interfaz como abstractos
 	public abstract double ataqueFisico(Personaje personajeObjetivo);
 	public abstract double ataqueMagico(Personaje personajeObjetivo);

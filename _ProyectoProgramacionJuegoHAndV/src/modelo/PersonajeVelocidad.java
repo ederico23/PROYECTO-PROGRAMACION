@@ -19,23 +19,7 @@ public class PersonajeVelocidad extends Personaje {
 			14.0,     // Velocidad  
 			6.0);	 // Resistencia
 	}
-	
-	/**
-	 * Constructor para personalizar
-	 * 
-	 * @param vida
-	 * @param statAtaque
-	 * @param statDefensa
-	 * @param statInteligencia
-	 * @param statFuerza
-	 * @param statVelocidad
-	 * @param statResistencia
-	 */
-	public PersonajeVelocidad(double vida, double statAtaque, double statDefensa, double statInteligencia,
-			double statFuerza, double statVelocidad, double statResistencia) {
-		super(vida, statAtaque, statDefensa, statInteligencia, statFuerza, statVelocidad, statResistencia);
-	}
-	
+
 	/**
 	 *  Metodo de ataque de tipo fisico
 	 * 

@@ -1,4 +1,7 @@
 package aplicacion;
+/**
+ * Clase main del programa donde se llaman a los metodos necesarios para que funcione el programa
+ */
 
 import controlador.CombateController;
 import controlador.CreadorPersonajesController;
@@ -8,7 +11,7 @@ import modelo.Jugador;
 import vista.JuegoVistaConsola;
 import controlador.CreadorPersonajesController;
 
-public class MainPruebaCreador {
+public class Main {
 
 	public static void main(String[] args) {
 		
@@ -16,7 +19,7 @@ public class MainPruebaCreador {
 		
 		TiendaController tiendaControlador = new TiendaController(vista);
 		
-		//creamos ell objeto que gestiona la creacion de jugadores
+		//Creamos el objeto que gestiona la creacion de jugadores
 		CreadorPersonajesController creador = new CreadorPersonajesController(vista);
 		
 		Jugador jugador1 = null;
@@ -32,10 +35,9 @@ public class MainPruebaCreador {
 			vista.mostrarMensaje(e.getMessage());
 		}
 		
-		//pruea
 		// Colocar condicion de que tenga que existir jugador
 		if (jugador1 != null && jugador2 != null) {
-			//creamos controlador de combate
+			//Creamos controlador de combate
 			CombateController combateControlador = new CombateController(jugador1, jugador2, vista);
 			
 			tiendaControlador.abrirTienda(jugador1);
