@@ -41,7 +41,7 @@ public class Tienda {
 	 * Metodo para mostrar el catalogo de la tienda
 	 */
 	public void mostrarCatalogo() {
-		System.out.println("-----TIENDA----");
+		System.out.println("\n-----TIENDA----");
 		
 		//Recorrer el ArrayList
 		for (int i = 0; i < catalogo.size(); i++) {

@@ -42,7 +42,7 @@ public class TiendaController {
 	 * @param jugador  = el jugador que va a comprar en la tienda
 	 */
 	public void abrirTienda(Jugador jugador) {
-		System.out.println("**********  TIENDA  **********");
+		System.out.println("\n**********  TIENDA  **********");
 		System.out.println(jugador.getNombre() + " tienes " + jugador.getMonedas() + " monedas");
 
 		int opcion;
@@ -50,7 +50,7 @@ public class TiendaController {
 		do {
 			tienda.mostrarCatalogo();
 			
-			opcion = Leer.leerEntero("¿que pocion quieres comprar? ");
+			opcion = Leer.leerEntero("\n¿Que pocion quieres comprar? ");
 			
 			if (opcion == 0) {
 				break;
@@ -72,7 +72,7 @@ public class TiendaController {
 		} while (jugador.getMonedas() > 0);
 		
 		//Mensaje de adios, actualizando las monedas
-		vista.mostrarMensaje("HAS SALIDO DE LA TIENDA" + 
+		vista.mostrarMensaje("\nHAS SALIDO DE LA TIENDA" + 
 				"\nTe quedan " + jugador.getMonedas() + " monedas\n");
 		
 		vista.mostrarInventario(jugador);

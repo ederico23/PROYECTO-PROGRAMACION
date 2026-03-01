@@ -137,6 +137,7 @@ public class CombateController {
 		    finalizarCombate(p1, p2);
 		}
 	}
+	
 	/**
 	 * Ejecutar el ataque
 	 * 
@@ -179,6 +180,13 @@ public class CombateController {
 	            return false;
 	    }
 	}
+	
+	/**
+	 * Metodo que finaliza el combate, despues muestra un resumen de la batalla
+	 * 
+	 * @param p1
+	 * @param p2
+	 */
 	private void finalizarCombate(Personaje p1, Personaje p2) {
 
 	    Jugador ganador;
@@ -197,6 +205,13 @@ public class CombateController {
 
 	    mostrarResumenCombate(ganador, perdedor);
 	}
+	
+	/**
+	 * Muestra un mensaje de ganador y perdedor y sus recompensas
+	 * 
+	 * @param ganador
+	 * @param perdedor
+	 */
 	private void mostrarResumenCombate(Jugador ganador, Jugador perdedor) {
 
 	    vista.mostrarMensaje("\n===== RESULTADO DEL COMBATE =====");

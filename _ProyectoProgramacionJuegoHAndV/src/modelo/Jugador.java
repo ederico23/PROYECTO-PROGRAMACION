@@ -178,7 +178,7 @@ public class Jugador {
 				);
 
 		//mandamos un mensaje
-		System.out.println("La compra ha sido exitosa, \nTe quedan " + this.getMonedas() + 
+		System.out.println("\nLa compra ha sido exitosa, \nTe quedan " + this.getMonedas() + 
 				" monedas.");
 		return true;
 
@@ -230,6 +230,7 @@ public class Jugador {
 		return true;
 
 	}
+	
 	/**
 	 * Metodo que suma uno al contador de batallas ganadas y da una recompensa en monedas
 	 * @param recompensaMonedas monedas a recibir como recompensa por ganar

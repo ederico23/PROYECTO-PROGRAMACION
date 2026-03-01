@@ -67,10 +67,10 @@ public class PocionVida extends Pociones {
 		
 		if (nuevaVida > personaje.getVidaMax()) { //Si la vida despues de la pocion es mayor que el maximo de vida del personaje, no cura
 			personaje.setVida(personaje.getVidaMax());
-			System.out.println("Vida al maximo \nVida actual: " + personaje.getVida() + "/" + personaje.getVidaMax());
+			System.out.println("\nVida al maximo \nVida actual: " + personaje.getVida() + "/" + personaje.getVidaMax());
 		} else {
 			personaje.setVida(nuevaVida);
-			System.out.println("Pocion de vida usada " + this.cantidadVidaAñadida + "HP\nVida actual: " + personaje.getVida() + "/" + personaje.getVidaMax());
+			System.out.println("\nPocion de vida usada " + this.cantidadVidaAñadida + "HP\nVida actual: " + personaje.getVida() + "/" + personaje.getVidaMax());
 		}
 		
 		//Establece el nuevo valor de vida en el personaje

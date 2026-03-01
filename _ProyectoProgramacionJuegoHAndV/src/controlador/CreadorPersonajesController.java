@@ -63,10 +63,10 @@ public class CreadorPersonajesController {
 
 		//mensaje de bienvenida + pedir nombre
 		String nombre = Leer.leerFrase("----BIENVENIDO A H & V---- \n"
-				+ "¿Como quieres que se"
+				+ "\n¿Como quieres que se"
 				+ " llame tu personaje del juego?");
 
-		vista.mostrarMensaje("Hola " + nombre + ", ahora elige tu tipo de personaje");
+		vista.mostrarMensaje("\nHola " + nombre + ", ahora elige tu tipo de personaje");
 
 		//Elegir el tipo de personaje
 		//Array de Strings para poner el tipo de personaje
@@ -82,16 +82,16 @@ public class CreadorPersonajesController {
 		
 		while (!valorCorrecto) {
 			
-			vista.mostrarMensaje("¿Que tipo de personaje quieres?");
+			vista.mostrarMensaje("\n¿Que tipo de personaje quieres?");
 			//recorremos el array
 			
 			for (int i = 0; i < menuTipo.length; i++) {
 				vista.mostrarMensaje(i + ". " + menuTipo[i]);
 			}
 			try {
-				opcionTipo = Leer.leerEntero("Elige una opcion: ");
+				opcionTipo = Leer.leerEntero("\nElige una opcion: ");
 				if (opcionTipo > menuTipo.length - 1 || opcionTipo < 0) {
-					throw new ValorFueraRangoExcepcion("La opcion tiene que estar entre "
+					throw new ValorFueraRangoExcepcion("\nLa opcion tiene que estar entre "
 							+(menuTipo.length - 1)+" y 0");
 				}
 				valorCorrecto = true;
@@ -107,7 +107,7 @@ public class CreadorPersonajesController {
 			// personaje predeterminado
 			personaje = elegirPersonajePredefinido();
 			Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
-			vista.mostrarMensaje("--PERSONAJE CREADO--");
+			vista.mostrarMensaje("\n--PERSONAJE CREADO--");
 			
 			return jugador;	
 		} else if (opcionTipo == 2){
@@ -121,12 +121,12 @@ public class CreadorPersonajesController {
 			}
 
 			Jugador jugador = new Jugador(nombre, personaje, MONEDAS_INICIALES);
-			vista.mostrarMensaje("--PERSONAJE CREADO--");
+			vista.mostrarMensaje("\n--PERSONAJE CREADO--");
 			
 			return jugador;	
 		} else {
-			vista.mostrarMensaje("Has salido del juego");
-			throw new JugadorNuloExcepcion("El jugador ha cancelado la creacion");
+			vista.mostrarMensaje("\nHas salido del juego");
+			throw new JugadorNuloExcepcion("\nEl jugador ha cancelado la creacion");
 		} 
 	}
 	
@@ -135,7 +135,7 @@ public class CreadorPersonajesController {
 	 * @return Personaje personaje elegido
 	 */
 	private Personaje elegirPersonajePredefinido() {
-		vista.mostrarMensaje("PERSONAJES PREDEFINIDOS");
+		vista.mostrarMensaje("\nPERSONAJES PREDEFINIDOS");
 
 		vista.mostrarMensaje("1. Tipo fuerza");
 		vista.mostrarMensaje("2. Tipo inteligencia");
@@ -146,33 +146,33 @@ public class CreadorPersonajesController {
 
 		do {
 			
-			opcion = Leer.leerEntero("Elige tu personaje (1-4):");
+			opcion = Leer.leerEntero("\nElige tu personaje (1-4):");
 
 		} while (opcion < 1 || opcion > 4);
 
 		switch(opcion) {
 		case 1: 
 			//eleccion personaje fuerza
-			vista.mostrarMensaje("Has elegido de tipo fuerza");
+			vista.mostrarMensaje("\nHas elegido de tipo fuerza");
 			return new PersonajeFuerza();
 
 		case 2:
 			//eleccion personaje inteligencia
-			vista.mostrarMensaje("Has elegido tipo inteligencia");
+			vista.mostrarMensaje("\nHas elegido tipo inteligencia");
 			return new PersonajeInteligencia();
 
 		case 3:
 			//eleccion personaje resistencia
-			vista.mostrarMensaje("Has elegido tipo resistencia");
+			vista.mostrarMensaje("\nHas elegido tipo resistencia");
 			return new PersonajeResistencia();
 
 		case 4: 
 			//eleccion velocidad
-			vista.mostrarMensaje("Has elegido tipo velocidad");
+			vista.mostrarMensaje("\nHas elegido tipo velocidad");
 			return new PersonajeVelocidad();
 
 		default:
-			vista.mostrarMensaje("Opcion no valida, asignando fuerza por defecto");
+			vista.mostrarMensaje("\nOpcion no valida, asignando fuerza por defecto");
 			return new PersonajeFuerza();
 		}
 	}
@@ -183,10 +183,10 @@ public class CreadorPersonajesController {
 	 * @return Personaje el personaje creado
 	 */
 	private Personaje elegirPersonajeCustom() throws ValorFueraRangoExcepcion {
-		vista.mostrarMensaje("--CREA TU PERSONAJE--");
+		vista.mostrarMensaje("\n--CREA TU PERSONAJE--");
 
 
-		vista.mostrarMensaje("Tienes " + REPARTIR_PUNTOS + " puntos a repartir entre tus stats");
+		vista.mostrarMensaje("\nTienes " + REPARTIR_PUNTOS + " puntos a repartir entre tus stats");
 		vista.mostrarMensaje("Cada stat tiene que tener minimo " + MIN_PTS_STAT + " punto");
 		vista.mostrarMensaje("Al crearlo personalizado tienes " + VIDA_CUSTOM + " HP");
 
@@ -228,17 +228,17 @@ public class CreadorPersonajesController {
 			boolean valorCorrecto = false;
 
 			while (!valorCorrecto) {
-				vista.mostrarMensaje("Puntos restantes: " + puntosRestantes +"\n");
+				vista.mostrarMensaje("\nPuntos restantes: " + puntosRestantes +"\n");
 				
 				try {
 					// Pedir los puntos para esta stat
-					puntosAsignados = Leer.leerEntero("Puntos para " + nombresStats[i]
+					puntosAsignados = Leer.leerEntero("\nPuntos para " + nombresStats[i]
 							+ " (min: " + MIN_PTS_STAT + ", max: " + maxAsignar + "):");
 	
 					// Si el valor no es valido se repite el bucle
 					if (puntosAsignados < MIN_PTS_STAT || puntosAsignados > maxAsignar) {
 						throw new ValorFueraRangoExcepcion(
-						        "Los puntos deben estar entre " + MIN_PTS_STAT + " y " + maxAsignar
+						        "\nLos puntos deben estar entre " + MIN_PTS_STAT + " y " + maxAsignar
 						    );
 					}
 					valorCorrecto = true;
@@ -273,8 +273,8 @@ public class CreadorPersonajesController {
 		statResistencia  = valoresStats[5];
 
 		// Resumen de las stats
-		vista.mostrarMensaje("----RESUMEN DE TU PERSONAJE----");
-		vista.mostrarMensaje("Vida : " + VIDA_CUSTOM);
+		vista.mostrarMensaje("\n----RESUMEN DE TU PERSONAJE----");
+		vista.mostrarMensaje("\nVida : " + VIDA_CUSTOM);
 
 		for (int i = 0; i < nombresStats.length; i++) {
 			vista.mostrarMensaje(nombresStats[i] + ": " + valoresStats[i]);
