@@ -4,6 +4,12 @@ package modelo;
  * Clase para calcular el daño
  */
 public class SistemaAfinidad {
+	/**
+	 * Metodo para calcular valor a multiplicar para reducir o aumentar el daño según que personajes se enfrentan
+	 * @param a primer personaje
+	 * @param d segundo personaje
+	 * @return double cantidad a multiplicar
+	 */
 	public static double calcular(Personaje a, Personaje d) {
 		
 		//Fuerza 

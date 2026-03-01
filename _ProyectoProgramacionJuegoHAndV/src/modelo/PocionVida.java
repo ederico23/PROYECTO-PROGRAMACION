@@ -80,7 +80,7 @@ public class PocionVida extends Pociones {
 	
 	@Override
 	/**
-	 * devuelve una representación en texto de la poción de vida
+	 * Devuelve una representación en texto de la poción de vida
 	 * @return String con los datos de la poción
 	 */
 	public String toString() {

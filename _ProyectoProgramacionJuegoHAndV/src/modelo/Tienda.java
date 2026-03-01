@@ -19,7 +19,6 @@ public class Tienda {
 	/**
 	 * Constructor de Tienda
 	 *  
-	 * @param catalogo
 	 */
 	public Tienda() {
 		this.catalogo = new ArrayList<Pociones>();

@@ -12,8 +12,17 @@ import vista.JuegoVistaConsola;
  * Clase que controla la logica de la batalla
  */
 public class CombateController {
+	/**
+	 * Uno de los jugadores que participa en el combate
+	 */
 	private Jugador jugador1;
+	/**
+	 * Uno de los jugadores que participa en el combate
+	 */
 	private Jugador jugador2;
+	/**
+	 * Referencia a la vista para mostrar por consola
+	 */
 	private JuegoVistaConsola vista;
 	
 	/**
@@ -135,7 +144,7 @@ public class CombateController {
 	 * @param atacante
 	 * @param defensor
 	 * @param nombreJugador
-	 * @return
+	 * @return boolean true o false dependiendo de si el metodo fue exitoso o no
 	 * @throws ValorFueraRangoExcepcion 
 	 */
 	private boolean ejecutarAtaque(Personaje atacante, Personaje defensor, String nombreJugador) {

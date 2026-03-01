@@ -16,11 +16,29 @@ import excepciones.ObjetoInventarioInvalidoExcepcion;
 import excepciones.ValorFueraRangoExcepcion;
 
 public class Jugador {
+	/**
+	 * Nombre del jugador
+	 */
 	private String nombre;
+	/**
+	 * Contador de batallas ganadas para el jugador
+	 */
 	private int contadorBatallasGanadas;
+	/**
+	 * Contador de batallas perdidas para el jugador
+	 */
 	private int contadorBatallasPerdidas;
+	/**
+	 * Personaje asignado al jugador 
+	 */
 	private Personaje personajeElegido;
+	/**
+	 * Divisa para comprar objetos
+	 */
 	private Integer monedas;
+	/**
+	 * Inventario de objetos del jugador
+	 */
 	private Map<Pociones, Integer> inventarioObjetos;
 	
 	/**
@@ -106,7 +124,9 @@ public class Jugador {
 	public void setMonedas(Integer monedas) {
 		this.monedas = monedas;
 	}
-
+	/**
+	 * @return  el inventario de objetos del jugador
+	 */
 	public Map<Pociones, Integer> getInventarioObjetos() {
 		return inventarioObjetos;
 	}

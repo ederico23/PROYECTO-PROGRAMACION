@@ -58,8 +58,8 @@ public class TiendaController {
 			
 			try {
 				//Llamamos al metodo comprar que se ocupa de saber si tiene monedas y si el 
-				//indice es valido (es decir, que ha introducido una opcioon valida)
-				//Le psamos jugador y opcion de compra
+				//Indice es valido (es decir, que ha introducido una opcioon valida)
+				//Le pasamos jugador y opcion de compra
 				jugador.comprar(tienda, opcion);
 				vista.mostrarInventario(jugador);
 			} catch (ValorFueraRangoExcepcion e) {

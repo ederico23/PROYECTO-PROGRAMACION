@@ -53,6 +53,7 @@ public class JuegoVistaConsola implements JuegoVista{
 	
 	/**
 	 * Muestra los objetos que tiene el jugador
+	 * @param jugador del cual se quiere mostrar el inventario
 	 */
 	public void mostrarInventario(Jugador jugador) {
 		System.out.println("---- INVENTARIO DE " + jugador.getNombre() + " ----");

@@ -1,7 +1,6 @@
 package controlador;
 import excepciones.JugadorNuloExcepcion;
 import excepciones.ValorFueraRangoExcepcion;
-//crear jugadores hecho pero hay fallo en la tienda)
 import modelo.Jugador;
 import modelo.Personaje;
 import modelo.PersonajeFuerza;
@@ -38,7 +37,9 @@ public class CreadorPersonajesController {
 	 * Vida que va a tener todos los personajes personalizados
 	 */
 	private static final double VIDA_CUSTOM = 100.0;
-
+	/**
+	 * Monedas iniciales que tendrá el jugador creado
+	 */
 	private static final int MONEDAS_INICIALES = 100;
 	
 
@@ -131,6 +132,7 @@ public class CreadorPersonajesController {
 	
 	/**
 	 * Metodo personaje predefinido 
+	 * @return Personaje personaje elegido
 	 */
 	private Personaje elegirPersonajePredefinido() {
 		vista.mostrarMensaje("PERSONAJES PREDEFINIDOS");
@@ -178,7 +180,7 @@ public class CreadorPersonajesController {
 	/**
 	 * Permite crear un personaje con caracterisiticas custom
 	 * @throws ValorFueraRangoExcepcion 
-	 * 
+	 * @return Personaje el personaje creado
 	 */
 	private Personaje elegirPersonajeCustom() throws ValorFueraRangoExcepcion {
 		vista.mostrarMensaje("--CREA TU PERSONAJE--");
