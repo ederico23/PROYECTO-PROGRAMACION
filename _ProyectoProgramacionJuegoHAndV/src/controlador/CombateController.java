@@ -24,6 +24,7 @@ public class CombateController {
 	 * Referencia a la vista para mostrar por consola
 	 */
 	private JuegoVistaConsola vista;
+	private static final int RECOMPENSA_VICTORIA = 50;
 	
 	/**
 	 * Constructor de clase
@@ -132,10 +133,8 @@ public class CombateController {
 		if (opcion == 0) {
 			System.out.println("Has salido de la partida");
 		}
-		if (!p1.estaVivo()) {
-			System.out.println(jugador2.getNombre()+" gana");
-		} else if (!p2.estaVivo()){
-			System.out.println(jugador1.getNombre()+" gana");
+		if (!p1.estaVivo() || !p2.estaVivo()) {
+		    finalizarCombate(p1, p2);
 		}
 	}
 	/**
@@ -180,5 +179,47 @@ public class CombateController {
 	            return false;
 	    }
 	}
-	
+	private void finalizarCombate(Personaje p1, Personaje p2) {
+
+	    Jugador ganador;
+	    Jugador perdedor;
+
+	    if (!p1.estaVivo()) {
+	        ganador = jugador2;
+	        perdedor = jugador1;
+	    } else {
+	        ganador = jugador1;
+	        perdedor = jugador2;
+	    }
+
+	    ganador.registrarVictoria(RECOMPENSA_VICTORIA);
+	    perdedor.registrarDerrota();
+
+	    mostrarResumenCombate(ganador, perdedor);
+	}
+	private void mostrarResumenCombate(Jugador ganador, Jugador perdedor) {
+
+	    vista.mostrarMensaje("\n===== RESULTADO DEL COMBATE =====");
+
+	    vista.mostrarMensaje("Ganador: " + ganador.getNombre());
+	    vista.mostrarMensaje("Recompensa: +" + RECOMPENSA_VICTORIA + " monedas");
+
+	    vista.mostrarMensaje("\n--- Estadísticas ---");
+
+	    vista.mostrarMensaje(
+	        ganador.getNombre() +
+	        " | Victorias: " + ganador.getContadorBatallasGanadas() +
+	        " | Derrotas: " + ganador.getContadorBatallasPerdidas() +
+	        " | Monedas: " + ganador.getMonedas()
+	    );
+
+	    vista.mostrarMensaje(
+	        perdedor.getNombre() +
+	        " | Victorias: " + perdedor.getContadorBatallasGanadas() +
+	        " | Derrotas: " + perdedor.getContadorBatallasPerdidas() +
+	        " | Monedas: " + perdedor.getMonedas()
+	    );
+
+	    vista.mostrarMensaje("==============================\n");
+	}
 }

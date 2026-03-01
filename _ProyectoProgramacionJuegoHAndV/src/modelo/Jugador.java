@@ -230,7 +230,18 @@ public class Jugador {
 		return true;
 
 	}
+	/**
+	 * Metodo que suma uno al contador de batallas ganadas y da una recompensa en monedas
+	 * @param recompensaMonedas monedas a recibir como recompensa por ganar
+	 */
+	public void registrarVictoria(int recompensaMonedas) {
+	    contadorBatallasGanadas++;
+	    monedas += recompensaMonedas;
+	}
 
+	public void registrarDerrota() {
+	    contadorBatallasPerdidas++;
+	}
 
 
 }
