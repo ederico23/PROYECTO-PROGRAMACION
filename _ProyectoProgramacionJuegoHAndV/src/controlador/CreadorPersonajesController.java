@@ -46,7 +46,7 @@ public class CreadorPersonajesController {
 	/**
 	 * Constructor
 	 * 
-	 * @param vista
+	 * @param vista interfaz para mostrar datos
 	 */
 	public CreadorPersonajesController(JuegoVista vista) {
 		this.vista = vista;
@@ -58,6 +58,8 @@ public class CreadorPersonajesController {
 	 * -Muestra opciones
 	 * -Crea el jugador
 	 * -Devuelve el jugador creado al completo
+	 * @return Jugador jugador creado junto con su personaje para la batalla
+	 * @throws JugadorNuloExcepcion si el jugador creado es nulo
 	 */
 	public Jugador crearJugador() throws JugadorNuloExcepcion {
 
