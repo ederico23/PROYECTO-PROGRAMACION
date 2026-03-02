@@ -1,15 +1,12 @@
 package modelo;
 
-
+import java.util.Objects;
 /**
  * Clase principal de creacion de personajes, conteniendo sus estadisticas
  * 
  * @author Mariano, Eder
  * @version 1.0 - 02/09/2026
  */
-
-import java.util.Objects;
-
 public abstract class Personaje implements Ataque{
 		
 	/**

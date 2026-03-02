@@ -1,14 +1,14 @@
 package vista;
 
-/**
- * Clase para hacer vista de menu de prueba
- */
-
 import java.util.Map;
 import modelo.Jugador;
 import modelo.Pociones;
 import utilidades.Leer;
-
+/**
+ * Clase para hacer vista de menu de prueba
+ * @author Mariano, Eder
+ * @version 1.0
+ */
 public class JuegoVistaConsola implements JuegoVista{
 	
 	@Override

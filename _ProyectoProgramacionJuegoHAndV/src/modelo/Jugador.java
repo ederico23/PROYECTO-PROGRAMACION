@@ -1,11 +1,5 @@
 package modelo;
 
-/**
- * Clase de Jugador
- * 
- * @author Mariano, Eder
- * @version 1.0
- */
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +8,12 @@ import java.util.Map;
 import excepciones.MonedasInsuficientesExcepcion;
 import excepciones.ObjetoInventarioInvalidoExcepcion;
 import excepciones.ValorFueraRangoExcepcion;
+/**
+ * Clase de Jugador
+ * 
+ * @author Mariano, Eder
+ * @version 1.0
+ */
 
 public class Jugador {
 	/**

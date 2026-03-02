@@ -1,4 +1,6 @@
 package modelo;
+
+import java.util.ArrayList;
 /**
  * Clase que representa la tienda del juego
  *  - Muestra un catalogo para comprar
@@ -7,8 +9,6 @@ package modelo;
  * @author Mariano, Eder
  * @version 1.0
  */
-import java.util.ArrayList;
-
 public class Tienda {
 	
 	/**

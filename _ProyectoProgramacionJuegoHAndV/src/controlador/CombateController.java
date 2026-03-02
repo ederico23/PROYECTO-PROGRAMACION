@@ -10,6 +10,8 @@ import vista.JuegoVistaConsola;
 
 /**
  * Clase que controla la logica de la batalla
+ * @author Mariano, Eder
+ * @version 1.0
  */
 public class CombateController {
 	/**
