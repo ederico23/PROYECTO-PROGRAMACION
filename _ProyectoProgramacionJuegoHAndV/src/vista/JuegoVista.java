@@ -2,7 +2,7 @@ package vista;
 
 import modelo.Jugador;
 /**
- * Clase para imprimir mensajes, mostrar menu y mostrar el inventario
+ * Interfaz para imprimir mensajes, mostrar menu y mostrar el inventario
  * @author Mariano, Eder
  * @version 1.0
  */
